@@ -12,8 +12,7 @@
 (setq deprave-packages '(gnus
                          chinese-pyim-basedict
                          chinese-pyim
-                         company
-                         ispell))
+                         company))
 
 (defun deprave/init-gnus ()
   "Initialize gnus"
