@@ -100,6 +100,10 @@ Each entry is either:
       ;; (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
       ;; (evil-set-initial-state 'newsticker-treeview-item-mode 'emacs)
       ;; (evil-set-initial-state 'newsticker-treeview-list-mode 'emacs)
+    :config
+    (progn
+      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+      (setq newsticker-retrieval-method 'intern)
       (evilified-state-evilify newsticker-treeview-mode
         newsticker-treeview-mode-map
         (kbd "n") 'newsticker-treeview-next-item
@@ -110,10 +114,6 @@ Each entry is either:
       (evilified-state-evilify newsticker-treeview-item-mode
         newsticker-treeview-item-mode-map)
       (evilified-state-evilify newsticker-treeview-list-mode
-        newsticker-treeview-list-mode-map))
-    :config
-    (progn
-      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
-      (setq newsticker-retrieval-method 'intern))))
+        newsticker-treeview-list-mode-map)))))
 
 ;;; packages.el ends here
