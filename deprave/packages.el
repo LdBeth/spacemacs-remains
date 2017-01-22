@@ -147,22 +147,7 @@
         "Sr" 'gnus-group-sort-groups-by-rank
         "Ss" 'gnus-group-sort-groups
         "Su" 'gnus-group-sort-groups-by-unread
-        "Sv" 'gnus-group-sort-groups-by-score)
-
-      ;; (defun spacemacs//gnus-set-key ()
-      ;;   "Set prefered keymap"
-      ;;   (define-key gnus-summary-mode-map
-      ;;     (kbd "<RET>") 'spacemacs/browse-nnrss-url)
-      ;;   (define-key gnus-summary-mode-map
-      ;;     (kbd "n") 'gnus-summary-next-article)
-      ;;   (define-key gnus-summary-mode-map
-      ;;     (kbd "p") 'gnus-summary-prev-article)
-      ;;   (define-key gnus-summary-mode-map
-      ;;     (kbd "N") 'gnus-summary-next-unread-article)
-      ;;   (define-key gnus-summary-mode-map
-      ;;     (kbd "P") 'gnus-summary-prev-unread-article))
-      ;; (add-hook 'gnus-summary-mode-hook #'spacemacs//gnus-set-key)
-      )))
+        "Sv" 'gnus-group-sort-groups-by-score))))
 
 (defun deprave/init-chinese-pyim-basedict ()
   "Initialize chinese-pyim-basedict"

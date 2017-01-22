@@ -97,9 +97,6 @@ Each entry is either:
        'newsticker-url-list
        '("网易新闻"
          "http://news.163.com/special/00011K6L/rss_newsattitude.xml"))
-      ;; (evil-set-initial-state 'newsticker-treeview-mode 'emacs)
-      ;; (evil-set-initial-state 'newsticker-treeview-item-mode 'emacs)
-      ;; (evil-set-initial-state 'newsticker-treeview-list-mode 'emacs)
     :config
     (progn
       (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
