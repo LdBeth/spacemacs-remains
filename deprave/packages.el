@@ -12,7 +12,8 @@
 (setq deprave-packages '(gnus
                          chinese-pyim-basedict
                          chinese-pyim
-                         company))
+                         company
+                         slime))
 
 (defun deprave/init-gnus ()
   "Initialize gnus"
@@ -189,3 +190,8 @@
         (add-to-list 'company-backends 'company-ispell)
         (message "company-ispell enabled."))))
     (spacemacs/set-leader-keys "Si" 'spell/toggle-company-ispell)))
+
+(defun deprave/pre-init-slime ()
+  (spacemacs|use-package-add-hook slime
+    :post-init
+    (setq inferior-lisp-program "/usr/local/bin/clisp")))
