@@ -194,4 +194,4 @@
 (defun deprave/pre-init-slime ()
   (spacemacs|use-package-add-hook slime
     :post-init
-    (setq inferior-lisp-program "/usr/local/bin/clisp")))
+    (setq inferior-lisp-program "clisp")))
