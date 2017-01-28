@@ -46,6 +46,7 @@ Each entry is either:
   "Initialize blog-admin"
   (use-package blog-admin
     :defer t
+    :commands blog-admin-start
     :init
     ;; Keybinding
     (spacemacs/set-leader-keys "ab" 'blog-admin-start)
