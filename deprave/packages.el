@@ -84,7 +84,7 @@
         (kbd "]") 'gnus-group-next-unread-group
         (kbd "[") 'gnus-group-next-unread-group
         (kbd "l") 'gnus-group-list-groups
-        (kbd "'") 'gnus-topic-read-group
+        (kbd "\'") 'gnus-topic-read-group
         (kbd "gj") 'gnus-group-jump-to-group
         (kbd "gn") 'gnus-group-get-new-news)
       (evilified-state-evilify gnus-server-mode gnus-server-mode-map

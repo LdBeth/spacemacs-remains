@@ -12,7 +12,8 @@
 ;;; Code:
 
 (defconst social-packages
-  '(blog-admin
+  '(hexo
+    ;; blog-admin
     gitter
     newsticker)
   "The list of Lisp packages required by the social layer.
@@ -42,29 +43,43 @@ Each entry is either:
       - A list beginning with the symbol `recipe' is a melpa
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 
-(defun social/init-blog-admin ()
-  "Initialize blog-admin"
-  (use-package blog-admin
+(defun social/init-hexo ()
+  (use-package hexo
     :defer t
-    :commands blog-admin-start
     :init
-    ;; Keybinding
-    (spacemacs/set-leader-keys "ab" 'blog-admin-start)
+    (defun hexo-my-blog ()
+      (interactive)
+      (hexo "~/blog/"))
+    (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
     :config
-    (progn
-      ;; Open post after create new post
-      (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
-      ;; Hexo
-      (setq blog-admin-backend-path "~/blog")
-      (setq blog-admin-backend-type 'hexo)
-      ;; create new post in drafts by default
-      (setq blog-admin-backend-new-post-in-drafts t)
-      ;; create same-name directory with new post
-      (setq blog-admin-backend-new-post-with-same-name-dir t)
-      ;; default assumes _config.yml
-      (setq blog-admin-backend-hexo-config-file "_config.yml"))
-    )
-  )
+    (evilified-state-evilify hexo-mode hexo-mode-map
+      (kbd "\'") 'hexo-command-show-article-info
+      (kbd "w") 'hexo-new
+      (kbd "r") 'hexo-command-revert-tabulated-list)))
+
+;; (defun social/init-blog-admin ()
+;;   "Initialize blog-admin"
+;;   (use-package blog-admin
+;;     :defer t
+;;     :commands blog-admin-start
+;;     :init
+;;     ;; Keybinding
+;;     (spacemacs/set-leader-keys "ab" 'blog-admin-start)
+;;     :config
+;;     (progn
+;;       ;; Open post after create new post
+;;       (add-hook 'blog-admin-backend-after-new-post-hook 'find-file)
+;;       ;; Hexo
+;;       (setq blog-admin-backend-path "~/blog")
+;;       (setq blog-admin-backend-type 'hexo)
+;;       ;; create new post in drafts by default
+;;       (setq blog-admin-backend-new-post-in-drafts t)
+;;       ;; create same-name directory with new post
+;;       (setq blog-admin-backend-new-post-with-same-name-dir t)
+;;       ;; default assumes _config.yml
+;;       (setq blog-admin-backend-hexo-config-file "_config.yml"))
+;;     )
+;;   )
 
 (defun social/init-gitter ()
   "Initialize gitter"
