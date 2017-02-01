@@ -12,7 +12,10 @@
 ;;; Code:
 
 (defconst social-packages
-  '(hexo
+  '(
+    (hexo :location (recipe
+                     :fetcher github
+                     :repo "LdBeth/hexo.el"))
     ;; blog-admin
     gitter
     newsticker)
