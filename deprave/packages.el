@@ -13,7 +13,11 @@
                          chinese-pyim-basedict
                          chinese-pyim
                          company
-                         slime))
+                         slime
+                         (eshell :location built-in)
+                         helm
+                         pcomplete-extension
+                         ))
 
 (defun deprave/init-gnus ()
   "Initialize gnus"
@@ -195,3 +199,25 @@
   (spacemacs|use-package-add-hook slime
     :post-init
     (setq inferior-lisp-program "clisp")))
+
+(defun deprave/pre-init-eshell ()
+  (spacemacs|use-package-add-hook eshell
+    :post-config
+    (progn
+      (require 'pcomplete-extension)
+      (defalias 'eshell/quit 'eshell/exit)
+      (mapc (lambda (x) (push x eshell-visual-commands))
+            '("vim" "mutt" "nethack")))))
+
+(defun deprave/pre-init-helm ()
+  (spacemacs|use-package-add-hook eshell
+    :post-init
+    (add-hook 'eshell-mode-hook
+              (lambda ()
+                (eshell-cmpl-initialize)
+                (define-key eshell-mode-map (kbd "TAB") 'helm-esh-pcomplete)
+                (define-key eshell-mode-map (kbd "M-p") 'helm-eshell-history)))))
+
+(defun deprave/init-pcomplete-extension ()
+  (use-package pcomplete-extension
+    :defer t))
