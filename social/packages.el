@@ -73,8 +73,6 @@ Each entry is either:
   "Initialize newsticker"
   (use-package newsticker
     :defer t
-    :commands
-    newsticker/show-news
     :init
     (progn
       (setq newsticker-retrieval-interval 3600)
@@ -83,6 +81,7 @@ Each entry is either:
         (require 'newsticker)
         (cl-letf (((symbol-function 'newsticker-start) #'ignore))
           (newsticker-show-news)))
+      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
       (spacemacs/set-leader-keys "af" 'newsticker/show-news)
       ;; (unless (newsticker-running-p) (newsticker-start))
       (setq newsticker-url-list nil)
@@ -90,9 +89,10 @@ Each entry is either:
        'newsticker-url-list
        '("月光博客"
          "http://feed.williamlong.info/"))
-    :config
-    (progn
-      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+      (add-to-list
+       'newsticker-url-list
+       '("ACG" "http://www.acgpiping.net/feed/")))
+    (with-eval-after-load 'newsticker
       (setq newsticker-retrieval-method 'intern)
       (evilified-state-evilify newsticker-treeview-mode
         newsticker-treeview-mode-map
@@ -104,6 +104,6 @@ Each entry is either:
       (evilified-state-evilify newsticker-treeview-item-mode
         newsticker-treeview-item-mode-map)
       (evilified-state-evilify newsticker-treeview-list-mode
-        newsticker-treeview-list-mode-map)))))
+        newsticker-treeview-list-mode-map))))
 
 ;;; packages.el ends here
