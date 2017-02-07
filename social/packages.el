@@ -74,7 +74,7 @@ Each entry is either:
   (use-package newsticker
     :defer t
     :commands
-    newsticker-show-news
+    newsticker/show-news
     :init
     (progn
       (setq newsticker-retrieval-interval 3600)
@@ -88,8 +88,8 @@ Each entry is either:
       (setq newsticker-url-list nil)
       (add-to-list
        'newsticker-url-list
-       '("网易新闻"
-         "http://news.163.com/special/00011K6L/rss_newsattitude.xml"))
+       '("月光博客"
+         "http://feed.williamlong.info/"))
     :config
     (progn
       (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
