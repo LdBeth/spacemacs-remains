@@ -100,6 +100,7 @@ Each entry is either:
         (kbd "N") 'newsticker-treeview-next-new-or-immortal-item
         (kbd "'") 'newsticker-treeview-next-page
         (kbd "gj") 'newsticker-treeview-jump
+        (kbd "gn") 'newsticker-treeview-get-news
         (kbd "RET") 'newsticker-treeview-browse-url)
       (evilified-state-evilify newsticker-treeview-item-mode
         newsticker-treeview-item-mode-map)
