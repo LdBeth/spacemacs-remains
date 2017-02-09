@@ -206,7 +206,7 @@
       (require 'pcomplete-extension)
       (defalias 'eshell/quit 'eshell/exit)
       (mapc (lambda (x) (push x eshell-visual-commands))
-            '("vim" "mutt" "nethack")))))
+            '("vim" "mutt" "nethack" "rtorrent")))))
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
