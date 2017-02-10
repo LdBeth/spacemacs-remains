@@ -1,4 +1,4 @@
-;;; packages.el --- gnus Layer packages File for Spacemacs
+;;; packages.el --- deprave Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
 ;;
