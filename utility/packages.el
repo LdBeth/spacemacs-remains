@@ -15,16 +15,31 @@
                           :location (recipe
                                      :fetcher github
                                      :repo "LdBeth/aria2.el"))
+                         eww
                           ))
 
 (defun utility/init-aria2 ()
+  "Initialize aria2"
   (use-package aria2
     :defer t
     :init
     (progn
-      (spacemacs/declare-prefix "ax" "utility")
-      (spacemacs/set-leader-keys "axa" 'aria2-downloads-list)
-      (add-to-list 'evil-emacs-state-modes 'aria2-mode)
-      (add-to-list 'evil-emacs-state-modes 'aria2-dialog-mode))))
+      (spacemacs/declare-prefix "an" "utility")
+      (spacemacs/set-leader-keys "ana" 'aria2-downloads-list))
+    :config
+    (setq aria2-add-evil-quirks t)
+    (setq aria2-download-directory (expand-file-name "~/Downloads/"))))
+
+(defun utility/init-eww ()
+  "Initialize eww"
+  (use-package eww
+    :defer t
+    :init
+    (spacemacs/set-leader-keys "ane" 'eww)
+    :config
+    (evilified-state-evilify eww-mode eww-mode-map
+      (kbd "r") 'eww-reload
+      (kbd "h") 'eww-back-url
+      (kbd "h") 'eww-forward-url)))
 
 ;;; packages.el ends here
