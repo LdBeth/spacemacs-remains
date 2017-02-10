@@ -11,7 +11,10 @@
 
 ;;; Code:
 
-(setq utility-packages '(aria2
+(setq utility-packages '((aria2
+                          :location (recipe
+                                     :fetcher github
+                                     :repo "LdBeth/aria2.el"))
                           ))
 
 (defun utility/init-aria2 ()
