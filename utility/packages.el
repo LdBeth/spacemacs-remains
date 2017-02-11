@@ -27,8 +27,17 @@
       (spacemacs/declare-prefix "an" "utility")
       (spacemacs/set-leader-keys "ana" 'aria2-downloads-list))
     :config
-    (setq aria2-add-evil-quirks t)
-    (setq aria2-download-directory (expand-file-name "~/Downloads/"))))
+    (progn
+      (defun aria2//is-aria-process-p (f &rest ARG)
+        "Returns t if PID belongs to aria."
+        (let ((pid (car ARG)))
+          (eq pid (string-to-number
+                   (shell-command-to-string
+                    (format "pgrep -u %s aria2c" (user-real-login-name)))))))
+      (advice-add 'aria2--is-aria-process-p
+                  :around #'aria2//is-aria-process-p)
+      (setq aria2-add-evil-quirks t)
+      (setq aria2-download-directory (expand-file-name "~/Downloads/")))))
 
 (defun utility/init-eww ()
   "Initialize eww"
@@ -37,9 +46,6 @@
     :init
     (spacemacs/set-leader-keys "ane" 'eww)
     :config
-    (evilified-state-evilify eww-mode eww-mode-map
-      (kbd "r") 'eww-reload
-      (kbd "h") 'eww-back-url
-      (kbd "h") 'eww-forward-url)))
+    (add-to-list 'evil-emacs-state-modes 'eww-mode)))
 
 ;;; packages.el ends here

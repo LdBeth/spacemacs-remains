@@ -16,6 +16,7 @@
                          slime
                          (eshell :location built-in)
                          pcomplete-extension
+                         header2
                          ))
 
 (defun deprave/init-gnus ()
@@ -210,4 +211,8 @@
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
+    :defer t))
+
+(defun deprave/init-header2 ()
+  (use-package header2
     :defer t))
