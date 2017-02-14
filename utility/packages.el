@@ -15,7 +15,7 @@
                           :location (recipe
                                      :fetcher github
                                      :repo "LdBeth/aria2.el"))
-                         eww
+                         (eww :location built-in)
                           ))
 
 (defun utility/init-aria2 ()
@@ -46,6 +46,19 @@
     :init
     (spacemacs/set-leader-keys "ane" 'eww)
     :config
-    (add-to-list 'evil-emacs-state-modes 'eww-mode)))
+    (progn
+      (define-key eww-mode-map (kbd "r") 'eww-reload)
+      (define-key eww-mode-map (kbd "b") 'eww-back-url)
+      (define-key eww-mode-map (kbd "f") 'eww-forward-url)
+      (define-key eww-mode-map (kbd "a") 'eww-add-bookmark)
+      (define-key eww-mode-map (kbd "s") 'eww-view-source)
+      (define-key eww-mode-map (kbd "l") nil)
+      (define-key eww-mode-map (kbd "v") nil)
+      (define-key eww-mode-map (kbd "h") nil)
+      (define-key eww-mode-map (kbd "g") nil)
+      (define-key eww-mode-map (kbd "?") nil)
+      (evil-make-overriding-map eww-mode-map 'normal)
+      ;; force update evil keymaps after eww-mode loaded
+      (add-hook 'eww-mode-hook #'evil-normalize-keymaps))))
 
 ;;; packages.el ends here

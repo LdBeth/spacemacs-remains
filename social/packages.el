@@ -53,10 +53,9 @@ Each entry is either:
       (hexo "~/blog/"))
     (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
     :config
-    (evilified-state-evilify hexo-mode hexo-mode-map
-      (kbd "\'") 'hexo-command-show-article-info
-      (kbd "w") 'hexo-new
-      (kbd "r") 'hexo-command-revert-tabulated-list)))
+    (evil-set-initial-state 'ranger-mode 'motion)
+    (evil-make-overriding-map ranger-mode-map 'motion)
+    (add-hook 'eww-mode-hook #'evil-normalize-keymaps)))
 
 (defun social/init-gitter ()
   "Initialize gitter"
