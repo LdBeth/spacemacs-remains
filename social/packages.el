@@ -53,9 +53,7 @@ Each entry is either:
       (hexo "~/blog/"))
     (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
     :config
-    (evil-set-initial-state 'ranger-mode 'motion)
-    (evil-make-overriding-map ranger-mode-map 'motion)
-    (add-hook 'eww-mode-hook #'evil-normalize-keymaps)))
+    (evilified-state-evilify hexo-mode hexo-mode-map)))
 
 (defun social/init-gitter ()
   "Initialize gitter"
@@ -64,9 +62,7 @@ Each entry is either:
     :init
     (spacemacs/set-leader-keys "aig" 'gitter)
     :config
-    (setq gitter-token "f4d803fefe6e1a44035dbe3553fd929a34677564")
-    )
-  )
+    (setq gitter-token "f4d803fefe6e1a44035dbe3553fd929a34677564")))
 
 (defun social/init-newsticker ()
   "Initialize newsticker"
