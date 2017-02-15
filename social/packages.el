@@ -47,23 +47,26 @@
     :defer t
     :init
     (progn
-      (setq newsticker-retrieval-interval 3600)
+      (setq newsticker-retrieval-interval 0)
       (defun newsticker/show-news ()
         (interactive)
         (require 'newsticker)
         (cl-letf (((symbol-function 'newsticker-start) #'ignore))
           (newsticker-show-news)))
-      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+      ;; (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
       (spacemacs/set-leader-keys "af" 'newsticker/show-news)
       ;; (unless (newsticker-running-p) (newsticker-start))
-      (setq newsticker-url-list nil)
+      (setq newsticker-url-list nil
+            newsticker-dir (expand-file-name
+                            (concat spacemacs-cache-directory
+                                    "newsticker/")))
       (add-to-list
        'newsticker-url-list
        '("月光博客"
-         "http://feed.williamlong.info/"))
+         "http://feed.williamlong.info/" nil nil nil))
       (add-to-list
        'newsticker-url-list
-       '("ACG" "http://www.acgpiping.net/feed/")))
+       '("ACG" "http://www.acgpiping.net/feed/" nil nil nil)))
     (with-eval-after-load 'newsticker
       (setq newsticker-retrieval-method 'intern)
       (evilified-state-evilify newsticker-treeview-mode
