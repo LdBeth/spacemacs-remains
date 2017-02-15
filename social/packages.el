@@ -16,7 +16,7 @@
                      :fetcher github
                      :repo "LdBeth/hexo.el"))
     gitter
-    newsticker)
+    (newsticker :location built-in))
   "The list of Lisp packages required by the social layer.
 
 Each entry is either:
@@ -96,6 +96,7 @@ Each entry is either:
         (kbd "'") 'newsticker-treeview-next-page
         (kbd "gj") 'newsticker-treeview-jump
         (kbd "gn") 'newsticker-treeview-get-news
+        (kbd "ga") 'newsticker-get-all-news
         (kbd "RET") 'newsticker-treeview-browse-url)
       (evilified-state-evilify newsticker-treeview-item-mode
         newsticker-treeview-item-mode-map)
