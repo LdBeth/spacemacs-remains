@@ -11,11 +11,15 @@
 
 ;;; Code:
 
-(setq utility-packages '((aria2
-                          :location (recipe
-                                     :fetcher github
-                                     :repo "LdBeth/aria2.el"))
-                         (eww :location built-in)))
+(defconst utility-packages
+  '(
+    (aria2
+     :location (recipe
+                :fetcher github
+                :repo "LdBeth/aria2.el"))
+    (eww :location built-in)
+    )
+  "The Network Utility Layer.")
 
 (defun utility/init-aria2 ()
   "Initialize aria2"

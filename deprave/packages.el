@@ -9,15 +9,18 @@
 ;;
 ;;; License: GPLv3
 
-(setq deprave-packages '(gnus
-                         chinese-pyim-basedict
-                         chinese-pyim
-                         company
-                         slime
-                         (eshell :location built-in)
-                         pcomplete-extension
-                         header2
-                         ))
+(defconst deprave-packages
+  '(
+    gnus
+    chinese-pyim-basedict
+    chinese-pyim
+    company
+    slime
+    (eshell :location built-in)
+    pcomplete-extension
+    header2
+    )
+  "The Improved Spacemacs Layer.")
 
 (defun deprave/init-gnus ()
   "Initialize gnus"

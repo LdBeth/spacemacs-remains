@@ -43,7 +43,8 @@
     emms-state
     helm-emms
     podcaster
-   ))
+    )
+  "The Emacs Media Layer.")
 
 (setq emms-excluded-packages '())
 
