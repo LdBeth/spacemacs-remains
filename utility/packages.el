@@ -15,8 +15,7 @@
                           :location (recipe
                                      :fetcher github
                                      :repo "LdBeth/aria2.el"))
-                         (eww :location built-in)
-                          ))
+                         (eww :location built-in)))
 
 (defun utility/init-aria2 ()
   "Initialize aria2"
@@ -45,8 +44,10 @@
     :defer t
     :init
     (spacemacs/set-leader-keys "ane" 'eww)
+    (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks)
     :config
     (progn
+      (setq shr-max-image-proportion 1)
       (define-key eww-mode-map (kbd "r") 'eww-reload)
       (define-key eww-mode-map (kbd "b") 'eww-back-url)
       (define-key eww-mode-map (kbd "f") 'eww-forward-url)
@@ -59,6 +60,16 @@
       (define-key eww-mode-map (kbd "?") nil)
       (evil-make-overriding-map eww-mode-map 'normal)
       ;; force update evil keymaps after eww-mode loaded
-      (add-hook 'eww-mode-hook #'evil-normalize-keymaps))))
+      (add-hook 'eww-mode-hook #'evil-normalize-keymaps)
+      (spacemacs/set-leader-keys-for-major-mode 'eww-mode
+        "e" 'eww
+        "n" 'eww-buffer-show-next
+        "p" 'eww-buffer-show-previous)
+      (evilified-state-evilify eww-history-mode eww-history-mode-map)
+      (evilified-state-evilify eww-bookmark-mode eww-bookmark-mode-map))))
+
+(defun utility/pre-init-eww ()
+  (with-eval-after-load 'url
+    (evilified-state-evilify url-cookie-mode url-cookie-mode-map)))
 
 ;;; packages.el ends here
