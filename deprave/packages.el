@@ -161,6 +161,8 @@
 
 (defun deprave/pre-init-elfeed ()
   (spacemacs|use-package-add-hook elfeed
+    :post-init
+    (setq elfeed-db-directory (concat dotspacemacs-directory "elfeed"))
     :post-config
     (evil-define-key 'evilified elfeed-show-mode-map "J"
       'elfeed-goodies/split-show-next)
@@ -173,11 +175,11 @@
     :defer t))
 
 (defun deprave/post-init-chinese-pyim ()
-  (with-eval-after-load 'chinese-pyim
-    ;; (use-package chinese-pyim-basedict
-    ;;   :ensure nil
-    ;;   :config
-    ;;   (chinese-pyim-basedict-enable))
+  (spacemacs|use-package-add-hook chinese-pyim
+    :post-init
+    (setq pyim-directory (concat dotspacemacs-directory "pyim/"))
+    :post-config
+    (progn
       (setq-default pyim-english-input-switch-functions
                     '(pyim-probe-isearch-mode
                       pyim-probe-dynamic-english
@@ -189,7 +191,7 @@
       (setq pyim-isearch-enable-pinyin-search t
             pyim-page-tooltip 'popup)
       (define-key global-map
-        (kbd "<s-return>") 'pyim-convert-code-at-point)))
+        (kbd "<s-return>") 'pyim-convert-code-at-point))))
 
 (defun deprave/post-init-company ()
   (spacemacs|add-company-hook text-mode)

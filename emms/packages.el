@@ -67,7 +67,7 @@
         "a ," 'emms-previous
         "a RET" 'emms-smart-browse
         )
-
+      (setq emms-directory (concat dotspacemacs-directory "emms"))
       (add-hook 'emms-browser-show-display-hook 'evil-initialize)
       (add-hook 'emms-stream-hook 'evil-initialize)
       )
@@ -141,14 +141,10 @@
 
 (defun emms/init-helm-emms ()
   (use-package helm-emms
-    :defer t
-    )
-  )
+    :defer t))
 
 (defun emms/init-podcaster ()
   (use-package podcaster
-    :defer t
-    )
-  )
+    :defer t))
 
 ;;; packages.el ends here
