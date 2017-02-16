@@ -47,8 +47,9 @@
   (use-package eww
     :defer t
     :init
-    (spacemacs/set-leader-keys "ane" 'eww)
-    (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks)
+    (progn
+      (spacemacs/set-leader-keys "ane" 'eww)
+      (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks))
     :config
     (progn
       (setq shr-max-image-proportion 1)

@@ -47,14 +47,14 @@
     :defer t
     :init
     (progn
-      (setq newsticker-retrieval-interval 0)
-      (defun newsticker/show-news ()
-        (interactive)
-        (require 'newsticker)
-        (cl-letf (((symbol-function 'newsticker-start) #'ignore))
-          (newsticker-show-news)))
-      ;; (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
-      (spacemacs/set-leader-keys "af" 'newsticker/show-news)
+      (setq newsticker-retrieval-interval 7200)
+      ;; (defun newsticker/show-news ()
+      ;;   (interactive)
+      ;;   (require 'newsticker)
+      ;;   (cl-letf (((symbol-function 'newsticker-start) #'ignore))
+      ;;     (newsticker-show-news)))
+      (add-hook 'newsticker-mode-hook 'imenu-add-menubar-index)
+      (spacemacs/set-leader-keys "af" 'newsticker-show-news)
       ;; (unless (newsticker-running-p) (newsticker-start))
       (setq newsticker-url-list nil
             newsticker-dir (expand-file-name

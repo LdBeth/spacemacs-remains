@@ -18,6 +18,7 @@
     slime
     (eshell :location built-in)
     pcomplete-extension
+    pcmpl-homebrew
     header2
     )
   "The Improved Spacemacs Layer.")
@@ -208,12 +209,17 @@
     :post-config
     (progn
       (require 'pcomplete-extension)
+      (require 'pcmpl-homebrew)
       (defalias 'eshell/quit 'eshell/exit)
       (mapc (lambda (x) (push x eshell-visual-commands))
             '("vim" "mutt" "nethack" "rtorrent")))))
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
+    :defer t))
+
+(defun deprave/init-pcmpl-homebrew ()
+  (use-package pcmpl-homebrew
     :defer t))
 
 (defun deprave/init-header2 ()
