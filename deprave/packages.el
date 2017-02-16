@@ -163,9 +163,9 @@
   (spacemacs|use-package-add-hook elfeed
     :post-config
     (evil-define-key 'evilified elfeed-show-mode-map "J"
-      'elfeed-show-next)
+      'elfeed-goodies/split-show-next)
     (evil-define-key 'evilified elfeed-show-mode-map "K"
-      'elfeed-show-prev)))
+      'elfeed-goodies/split-show-prev)))
 
 (defun deprave/init-chinese-pyim-basedict ()
   "Initialize chinese-pyim-basedict"

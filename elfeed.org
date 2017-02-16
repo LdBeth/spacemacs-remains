@@ -1,6 +1,6 @@
 #+TITLE: LdBeth's RSS Feeds List
 #+STARTUP: SHOWALL
-#+TAGS: elfeed(e) News(n) View(v) Reading(r) ACG(a)
+#+TAGS: elfeed(e) News(n) View(v) Recommend(r) ACG(a)
 
 * RSS Feeds                                                          :elfeed:
 ** News                                                               :News:
@@ -8,8 +8,14 @@
 *** [[http://www.acgpiping.net/feed/][ACG 批评]]                                                            :ACG:
 ** Blogs
 *** [[http://feed.williamlong.info/][月光博客]]
+    感觉倒像是新闻。
 ** View                                                               :View:
 *** [[http://www.nbweekly.com/rss/smw/][南都周刊]]
 *** [[http://news.163.com/special/00011K6L/rss_newsattitude.xml][网易]]
-** Reading                                                         :Reading:
+    很久没更新了的样子。
+** Recommendations                                               :Recommend:
+*** [[http://animetaste.net/feed][Anime Taste]]                                                         :ACG:
 *** [[http://www.zreading.cn/feed][左岸读书]]
+** Comic
+*** [[https://xkcd.com/rss.xml][xkcd]]
+    Something Interesting.
