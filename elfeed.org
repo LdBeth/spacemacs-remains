@@ -1,0 +1,15 @@
+#+TITLE: LdBeth's RSS Feeds List
+#+STARTUP: SHOWALL
+#+TAGS: elfeed(e) News(n) View(v) Reading(r) ACG(a)
+
+* RSS Feeds                                                          :elfeed:
+** News                                                               :News:
+*** [[http://www.solidot.org/index.rss][Solidot]]
+*** [[http://www.acgpiping.net/feed/][ACG 批评]]                                                            :ACG:
+** Blogs
+*** [[http://feed.williamlong.info/][月光博客]]
+** View                                                               :View:
+*** [[http://www.nbweekly.com/rss/smw/][南都周刊]]
+*** [[http://news.163.com/special/00011K6L/rss_newsattitude.xml][网易]]
+** Reading                                                         :Reading:
+*** [[http://www.zreading.cn/feed][左岸读书]]

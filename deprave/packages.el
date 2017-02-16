@@ -12,6 +12,7 @@
 (defconst deprave-packages
   '(
     gnus
+    elfeed
     chinese-pyim-basedict
     chinese-pyim
     company
@@ -157,6 +158,14 @@
         "Ss" 'gnus-group-sort-groups
         "Su" 'gnus-group-sort-groups-by-unread
         "Sv" 'gnus-group-sort-groups-by-score))))
+
+(defun deprave/pre-init-elfeed ()
+  (spacemacs|use-package-add-hook elfeed
+    :post-config
+    (evil-define-key 'evilified elfeed-show-mode-map "J"
+      'elfeed-show-next)
+    (evil-define-key 'evilified elfeed-show-mode-map "K"
+      'elfeed-show-prev)))
 
 (defun deprave/init-chinese-pyim-basedict ()
   "Initialize chinese-pyim-basedict"
