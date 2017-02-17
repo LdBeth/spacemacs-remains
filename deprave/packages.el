@@ -181,6 +181,7 @@
 
 (defun deprave/post-init-chinese-pyim ()
   (with-eval-after-load 'chinese-pyim
+    ;; For some reason cannot use `spacemacs|add-company-hook'.
     (setq-default pyim-english-input-switch-functions
                   '(pyim-probe-isearch-mode
                     pyim-probe-dynamic-english
