@@ -1,6 +1,27 @@
-#+TITLE: LdBeth's RSS Feeds List
+#+TITLE: LdBeth's Spacemacs Private Directory
 #+STARTUP: SHOWALL
 #+TAGS: News(n) View(v) Push(p) Pics(p) Emacs(e) ACG(a)
+
+* Introduction
+  This is the Spacemacs directory of LdBeth, to use it, clone it to
+  =~/.emacs.d/private= or =~/.spacemacs.d/private=. (It is
+  recommended to use =dotspacemacs-directory=.)
+
+* Deprave Layer
+  Here is some hack of the existed problem of Spacemacs.
+
+* EMMS Layer
+  The Emacs Media Manger Layer. It is pending and will be included
+  in Spacemacs in the future.
+
+* Maxima Layer
+  The Lisp Computer Algebra System.
+
+* Social Layer
+  Configuration for Blog and Gitter, may add more packages soon.
+
+* Utility Layer
+  Network utility, including aira2 and eww.
 
 * RSS Feeds                                                          :elfeed:
 ** News                                                               :News:
