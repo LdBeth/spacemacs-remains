@@ -49,10 +49,11 @@
     :init
     (progn
       (spacemacs/set-leader-keys "ane" 'eww)
-      (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks))
+      (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks)
+      )
     :config
     (progn
-      (setq shr-max-image-proportion 1)
+      (setq eww-bookmarks-directory dotspacemacs-directory)
       (define-key eww-mode-map (kbd "r") 'eww-reload)
       (define-key eww-mode-map (kbd "b") 'eww-back-url)
       (define-key eww-mode-map (kbd "f") 'eww-forward-url)

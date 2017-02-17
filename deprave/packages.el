@@ -177,21 +177,22 @@
 (defun deprave/post-init-chinese-pyim ()
   (spacemacs|use-package-add-hook chinese-pyim
     :post-init
-    (setq pyim-directory (concat dotspacemacs-directory "pyim/"))
-    :post-config
-    (progn
-      (setq-default pyim-english-input-switch-functions
-                    '(pyim-probe-isearch-mode
-                      pyim-probe-dynamic-english
-                      pyim-probe-program-mode
-                      pyim-probe-org-structure-template))
-      (setq-default pyim-punctuation-half-width-functions
-                    '(pyim-probe-punctuation-line-beginning
-                      pyim-probe-punctuation-after-punctuation))
-      (setq pyim-isearch-enable-pinyin-search t
-            pyim-page-tooltip 'popup)
-      (define-key global-map
-        (kbd "<s-return>") 'pyim-convert-code-at-point))))
+    (setq pyim-directory (concat dotspacemacs-directory "pyim/"))))
+
+(defun deprave/post-init-chinese-pyim ()
+  (with-eval-after-load 'chinese-pyim
+    (setq-default pyim-english-input-switch-functions
+                  '(pyim-probe-isearch-mode
+                    pyim-probe-dynamic-english
+                    pyim-probe-program-mode
+                    pyim-probe-org-structure-template))
+    (setq-default pyim-punctuation-half-width-functions
+                  '(pyim-probe-punctuation-line-beginning
+                    pyim-probe-punctuation-after-punctuation))
+    (setq pyim-isearch-enable-pinyin-search t
+          pyim-page-tooltip 'popup)
+    (define-key global-map
+      (kbd "<s-return>") 'pyim-convert-code-at-point)))
 
 (defun deprave/post-init-company ()
   (spacemacs|add-company-hook text-mode)
