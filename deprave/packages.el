@@ -175,11 +175,6 @@
     :defer t))
 
 (defun deprave/post-init-chinese-pyim ()
-  (spacemacs|use-package-add-hook chinese-pyim
-    :post-init
-    (setq pyim-directory (concat dotspacemacs-directory "pyim/"))))
-
-(defun deprave/post-init-chinese-pyim ()
   (with-eval-after-load 'chinese-pyim
     ;; For some reason cannot use `spacemacs|add-company-hook'.
     (setq-default pyim-english-input-switch-functions
