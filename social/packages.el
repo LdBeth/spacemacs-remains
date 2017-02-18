@@ -36,8 +36,6 @@
   (use-package gitter
     :defer t
     :init
-    (spacemacs/set-leader-keys "aig" 'gitter)
-    :config
-    (setq gitter-token "f4d803fefe6e1a44035dbe3553fd929a34677564")))
+    (spacemacs/set-leader-keys "aig" 'gitter)))
 
 ;;; packages.el ends here

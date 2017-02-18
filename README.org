@@ -3,9 +3,11 @@
 #+TAGS: News(n) View(v) Push(p) Pics(p) Emacs(e) ACG(a)
 
 * Introduction
-  This is the Spacemacs directory of LdBeth, to use it, clone it to
-  =~/.emacs.d/private= or =~/.spacemacs.d/private=. (It is
-  recommended to use =dotspacemacs-directory=.)
+  This is the Spacemacs private directory of LdBeth, to use it, clone it to
+  =~/.spacemacs.d/private= or symbol link it to =~/.emacs.d/private/=.
+  (It is recommended to use =dotspacemacs-directory=, for the sake 
+  of a easier way to manage your personal files.)
+  Or you can just hack on this.
 
 * Deprave Layer
   Here is some hack of the existed problem of Spacemacs.
@@ -24,6 +26,7 @@
   Network utility, including aira2 and eww.
 
 * RSS Feeds                                                          :elfeed:
+  I use elfeed-org to manage my RSS Feeds.
 ** News                                                               :News:
 *** [[http://www.solidot.org/index.rss][Solidot]]
 *** [[http://www.acgpiping.net/feed/][ACG 批评]]                                                            :ACG:
