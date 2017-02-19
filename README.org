@@ -2,28 +2,35 @@
 #+STARTUP: SHOWALL
 #+TAGS: News(n) View(v) Push(p) Pics(p) Emacs(e) ACG(a)
 
+[[file:evil.png]]
+
+
 * Introduction
-  This is the Spacemacs private directory of LdBeth, to use it, clone it to
-  =~/.spacemacs.d/private= or symbol link it to =~/.emacs.d/private/=.
+  This is the Spacemacs private directory of LdBeth, to use it, clone it
+  to =~/.spacemacs.d/= or symbol link it to =~/.emacs.d/private/=.
   (It is recommended to use =dotspacemacs-directory=, for the sake 
   of a easier way to manage your personal files.)
-  Or you can just hack on this.
+  Or you can just get a copy and hack on this.
 
 * Deprave Layer
-  Here is some hack of the existed problem of Spacemacs.
+  Here is some improvement of the existed problems of Spacemacs.
 
 * EMMS Layer
   The Emacs Media Manger Layer. It is pending and will be included
   in Spacemacs in the future.
 
 * Maxima Layer
-  The Lisp Computer Algebra System.
+  The Lisp Computer Algebra System. Not completed yet.
 
 * Social Layer
   Configuration for Blog and Gitter, may add more packages soon.
 
+* Mew Layer
+  Mail in Emacs World.
+
 * Utility Layer
-  Network utility, including aira2 and eww.
+  Network utility, including aira2 and eww. There are some problems
+  on aria2.el.
 
 * RSS Feeds                                                          :elfeed:
   I use elfeed-org to manage my RSS Feeds.
