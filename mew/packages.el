@@ -38,15 +38,19 @@
   (use-package mew
     :defer t
     :init
-    (spacemacs/set-leader-keys "aM" 'mew)
-    (if (boundp 'read-mail-command)
-        (setq read-mail-command 'mew))
-    (if (fboundp 'define-mail-user-agent)
-        (define-mail-user-agent
-          'mew-user-agent
-          'mew-user-agent-compose
-          'mew-draft-send-message
-          'mew-draft-kill
-          'mew-send-hook))))
+    (progn
+      (spacemacs/set-leader-keys "aM" 'mew)
+      (if (boundp 'read-mail-command)
+          (setq read-mail-command 'mew))
+      (if (fboundp 'define-mail-user-agent)
+          (define-mail-user-agent
+            'mew-user-agent
+            'mew-user-agent-compose
+            'mew-draft-send-message
+            'mew-draft-kill
+            'mew-send-hook)))
+    :config
+    (progn
+      (evilified-state-evilify mew-summary-mode mew-summary-mode-map))))
 
 ;;; packages.el ends here
