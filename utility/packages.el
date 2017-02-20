@@ -53,7 +53,10 @@
       )
     :config
     (progn
-      (setq eww-bookmarks-directory dotspacemacs-directory)
+      (setq eww-bookmarks-directory
+            (if (file-exists-p dotspacemacs-directory)
+                dotspacemacs-directory
+              spacemacs-cache-directory))
       (define-key eww-mode-map (kbd "r") 'eww-reload)
       (define-key eww-mode-map (kbd "b") 'eww-back-url)
       (define-key eww-mode-map (kbd "f") 'eww-forward-url)

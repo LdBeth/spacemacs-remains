@@ -39,7 +39,7 @@
     :defer t
     :init
     (progn
-      (spacemacs/set-leader-keys "aM" 'mew)
+      (spacemacs/set-leader-keys "aw" 'mew)
       (if (boundp 'read-mail-command)
           (setq read-mail-command 'mew))
       (if (fboundp 'define-mail-user-agent)
@@ -51,7 +51,7 @@
             'mew-send-hook)))
     :config
     (progn
-      ;; Currently Idon't want to use evilified state in mew.
+      ;; Currently I don't want to use evilified state in mew.
       (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
 
 ;;; packages.el ends here

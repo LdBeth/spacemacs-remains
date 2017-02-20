@@ -13,7 +13,27 @@
   Or you can just get a copy and hack on this.
 
 * Deprave Layer
+  The Improved Spacemacs Layer.
   Here is some improvement of the existed problems of Spacemacs.
+
+** Gnus
+   Added shadowed bindings to major mode prefix.
+
+** Elfeed
+   Bind =elfeed/split-show-next= and =elfeed/split-show-prev= to
+   ~J~ and ~k~.
+
+** Chinese-pyim
+   Automatic enable Chinese pyim input method.
+
+** Company-ispell
+   Guess words by using ispell/aspell.
+
+** SLIME
+   Use my preferred Clisp program.
+
+** Eshell
+   Added =pcomlete-extension= and =pcml-homebrew=.
 
 * EMMS Layer
   The Emacs Media Manger Layer. It is pending and will be included
@@ -25,12 +45,26 @@
 * Social Layer
   Configuration for Blog and Gitter, may add more packages soon.
 
+** hexo.el
+   Writing blogs using hexo as backend.
+   ~SPC a b~ to start.
+
+** gitter.el
+   A simple program to chat in Gitter.
+
 * Mew Layer
   Mail in Emacs World.
 
 * Utility Layer
   Network utility, including aira2 and eww. There are some problems
   on aria2.el.
+
+** aria2.el
+   A frontend to aria2. Currently there are some problems when
+   working on macOS.
+
+** eww
+   Using Emacs to browse web.
 
 * RSS Feeds                                                          :elfeed:
   I use elfeed-org to manage my RSS Feeds.

@@ -111,7 +111,7 @@
         (kbd "gj") 'gnus-summary-goto-article
         (kbd "<RET>") 'spacemacs/browse-nnrss-url)
 
-      ;; Bind Shawdowed bindings to Major mode prefix
+      ;; Bind shadowed bindings to major mode prefix
       (dolist (prefix '(("mP" . "group/sort-select")
                         ("mS" . "group/sort")
                         ))
@@ -162,7 +162,10 @@
 (defun deprave/pre-init-elfeed ()
   (spacemacs|use-package-add-hook elfeed
     :post-init
-    (setq elfeed-db-directory (concat dotspacemacs-directory "elfeed"))
+    (setq elfeed-db-directory
+          (if (file-exists-p dotspacemacs-directory)
+              (concat dotspacemacs-directory "elfeed")
+            (concat spacemacs-cache-directory "elfeed")))
     :post-config
     (evil-define-key 'evilified elfeed-show-mode-map "J"
       'elfeed-goodies/split-show-next)
