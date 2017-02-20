@@ -51,6 +51,7 @@
             'mew-send-hook)))
     :config
     (progn
-      (evilified-state-evilify mew-summary-mode mew-summary-mode-map))))
+      ;; Currently Idon't want to use evilified state in mew.
+      (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
 
 ;;; packages.el ends here
