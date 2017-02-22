@@ -221,10 +221,38 @@
     (progn
       (require 'pcomplete-extension)
       (require 'pcmpl-homebrew)
+      ;; Useful functions
       (defalias 'eshell/quit 'eshell/exit)
+      (defun eshell/clear ()
+        "Clear the eshell buffer."
+        (interactive)
+        (let ((inhibit-read-only t))
+          (erase-buffer)))
+      (defun deprave/return ()
+        (interactive)
+        (let ((input (eshell-get-old-input)))
+          (if (string-equal input "")
+              (progn
+                (insert-string "ls -a")
+                (eshell-send-input))
+            (eshell-send-input))))
+      (add-hook 'eshell-mode-hook
+                (lambda ()
+                  (local-set-key (kbd "<RET>") 'deprave/return)))
       (mapc (lambda (x) (push x eshell-visual-commands))
-            '("vim" "mutt" "nethack" "rtorrent")))))
-
+            '("vim" "mutt" "nethack" "rtorrent"))
+      ;; Time stamp
+      (add-hook 'eshell-load-hook
+                (lambda () (setq deprave/last-command-start-time
+                                 (time-to-seconds))))
+      (add-hook 'eshell-pre-command-hook
+                (lambda () (setq deprave/last-command-start-time
+                                 (time-to-seconds))))
+      (add-hook 'eshell-before-prompt-hook
+                (lambda ()
+                  (message "%g Sec"
+                           (- (time-to-seconds)
+                              deprave/last-command-start-time)))))))
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
     :defer t))
