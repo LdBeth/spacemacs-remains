@@ -18,8 +18,9 @@
                 :fetcher github
                 :repo "LdBeth/aria2.el"))
     (eww :location built-in)
+    mew
     )
-  "The Network Utility Layer.")
+  "The Utility Layer, including some useful tools.")
 
 (defun utility/init-aria2 ()
   "Initialize aria2"
@@ -27,7 +28,7 @@
     :defer t
     :init
     (progn
-      (spacemacs/declare-prefix "an" "utility")
+      (spacemacs/declare-prefix "an" "network")
       (spacemacs/set-leader-keys "ana" 'aria2-downloads-list))
     :config
     (progn
