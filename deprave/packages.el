@@ -253,6 +253,7 @@
                   (message "%g Sec"
                            (- (time-to-seconds)
                               deprave/last-command-start-time)))))))
+
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
     :defer t))
