@@ -17,7 +17,7 @@
                      :fetcher github
                      :repo "LdBeth/hexo.el"))
     gitter
-    mew
+    ;; mew
     )
   "The Social Layer, including mail, blog, chat, and RSS reader.")
 
@@ -39,25 +39,25 @@
     :init
     (spacemacs/set-leader-keys "aig" 'gitter)))
 
-(defun social/init-mew ()
-  "Initialize mew"
-  (use-package mew
-    :defer t
-    :init
-    (progn
-      (spacemacs/set-leader-keys "aw" 'mew)
-      (if (boundp 'read-mail-command)
-          (setq read-mail-command 'mew))
-      (if (fboundp 'define-mail-user-agent)
-          (define-mail-user-agent
-            'mew-user-agent
-            'mew-user-agent-compose
-            'mew-draft-send-message
-            'mew-draft-kill
-            'mew-send-hook)))
-    :config
-    (progn
-      ;; Currently I don't want to use evilified state in mew.
-      (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
+;; (defun social/init-mew ()
+;;   "Initialize mew"
+;;   (use-package mew
+;;     :defer t
+;;     :init
+;;     (progn
+;;       (spacemacs/set-leader-keys "aw" 'mew)
+;;       (if (boundp 'read-mail-command)
+;;           (setq read-mail-command 'mew))
+;;       (if (fboundp 'define-mail-user-agent)
+;;           (define-mail-user-agent
+;;             'mew-user-agent
+;;             'mew-user-agent-compose
+;;             'mew-draft-send-message
+;;             'mew-draft-kill
+;;             'mew-send-hook)))
+;;     :config
+;;     (progn
+;;       ;; Currently I don't want to use evilified state in mew.
+;;       (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
 
 ;;; packages.el ends here

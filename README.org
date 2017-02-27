@@ -52,7 +52,7 @@
 ** gitter.el
    A simple program to chat in Gitter.
 
-* Mew Layer
+** Mew Layer
   Mail in Emacs World.
 
 * Utility Layer

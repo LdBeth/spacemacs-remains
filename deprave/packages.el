@@ -16,6 +16,8 @@
     chinese-pyim-basedict
     chinese-pyim
     company
+    smex
+    helm-smex
     slime
     (eshell :location built-in)
     pcomplete-extension
@@ -192,6 +194,29 @@
           pyim-page-tooltip 'popup)
     (define-key global-map
       (kbd "<s-return>") 'pyim-convert-code-at-point)))
+
+(defun deprave/init-smex ()
+  "Initialize smex"
+  (use-package smex
+    :defer t
+    :init
+    (progn
+      (setq-default smex-history-length 32
+                    smex-save-file (concat spacemacs-cache-directory
+                                           ".smex-items")))))
+
+(defun deprave/init-helm-smex ()
+  (use-package helm-smex
+    :init
+    (progn
+      ;; define the key binding at the very end in order to allow the user
+      ;; to overwrite any key binding
+      (add-hook 'emacs-startup-hook
+                (lambda () (spacemacs/set-leader-keys
+                             dotspacemacs-emacs-command-key 'helm-M-x)))
+      (spacemacs/set-leader-keys ":" #'helm-smex-major-mode-commands)
+      (global-set-key (kbd "M-x") #'helm-smex)
+      )))
 
 (defun deprave/post-init-company ()
   (spacemacs|add-company-hook text-mode)

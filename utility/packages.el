@@ -18,7 +18,6 @@
                 :fetcher github
                 :repo "LdBeth/aria2.el"))
     (eww :location built-in)
-    mew
     )
   "The Utility Layer, including some useful tools.")
 
@@ -44,7 +43,7 @@
       (setq aria2-download-directory (expand-file-name "~/Downloads/")))))
 
 (defun utility/init-eww ()
-  "Initialize eww"
+  "initialize eww"
   (use-package eww
     :defer t
     :init
