@@ -83,12 +83,21 @@
       (define-key notmuch-hello-mode-map (kbd "f") 'notmuch-jump-search)
       (define-key notmuch-hello-mode-map (kbd "j") 'widget-forward)
       (define-key notmuch-hello-mode-map (kbd "k") 'widget-backward)
-      (define-key notmuch-search-mode-map
-        (kbd "j") 'notmuch-search-next-thread)
-      (define-key notmuch-search-mode-map
+
+      (evilified-state-evilify-map notmuch-search-mode-map
+        :mode notmuch-search-mode
+        :bindings
+        (kbd "f") 'notmuch-jump-search
+        (kbd "j") 'notmuch-search-next-thread
         (kbd "k") 'notmuch-search-previous-thread)
-      (define-key notmuch-search-mode-map
-        (kbd "f") 'notmuch-jump-search)
+
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "j") 'notmuch-search-next-thread)
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "k") 'notmuch-search-previous-thread)
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "f") 'notmuch-jump-search)
+
       (add-hook 'notmuch-hello-refresh-hook
                 (lambda ()
                   (if (and (eq (point) (point-min))
