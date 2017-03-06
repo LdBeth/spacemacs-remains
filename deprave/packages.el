@@ -192,8 +192,7 @@
                     pyim-probe-punctuation-after-punctuation))
     (setq pyim-isearch-enable-pinyin-search t
           pyim-page-tooltip 'popup)
-    (define-key global-map
-      (kbd "<s-return>") 'pyim-convert-code-at-point)))
+    (define-key global-map (kbd "<s-return>") 'pyim-convert-code-at-point)))
 
 (defun deprave/init-smex ()
   "Initialize smex"

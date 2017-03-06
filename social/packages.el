@@ -74,8 +74,7 @@
       (spacemacs/set-leader-keys
         "ann" 'notmuch
         "ans" 'helm-notmuch
-        "anm" 'nm)
-      (push "/usr/local/share/emacs/site-lisp/notmuch" load-path))
+        "anm" 'nm))
     :config
     (progn
       (add-to-list 'evil-emacs-state-modes 'notmuch-mode)
