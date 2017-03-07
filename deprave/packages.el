@@ -243,15 +243,8 @@
   (spacemacs|use-package-add-hook eshell
     :post-config
     (progn
-      (require 'pcomplete-extension)
-      (require 'pcmpl-homebrew)
       ;; Useful functions
       (defalias 'eshell/quit 'eshell/exit)
-      (defun eshell/clear ()
-        "Clear the eshell buffer."
-        (interactive)
-        (let ((inhibit-read-only t))
-          (erase-buffer)))
       (defun deprave/return ()
         (interactive)
         (let ((input (eshell-get-old-input)))
@@ -264,7 +257,7 @@
                 (lambda ()
                   (local-set-key (kbd "<RET>") 'deprave/return)))
       (mapc (lambda (x) (push x eshell-visual-commands))
-            '("vim" "mutt" "nethack" "rtorrent"))
+            '("vim" "mutt" "nethack" "rtorrent" "w3m"))
       ;; Time stamp
       (add-hook 'eshell-load-hook
                 (lambda () (setq deprave/last-command-start-time
@@ -280,11 +273,17 @@
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
-    :defer t))
+    :defer t
+    :init
+    (with-eval-after-load 'eshell
+      (require 'pcomplete-extension))))
 
 (defun deprave/init-pcmpl-homebrew ()
   (use-package pcmpl-homebrew
-    :defer t))
+    :defer t
+    :init
+    (with-eval-after-load 'eshell
+      (require 'pcmpl-homebrew))))
 
 (defun deprave/init-header2 ()
   (use-package header2
