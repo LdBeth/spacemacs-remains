@@ -16,12 +16,13 @@
     (hexo :location (recipe
                      :fetcher github
                      :repo "LdBeth/hexo.el"))
-    gitter
-    ;; mew
-    (notmuch :location site)
-    (ace-link-notmuch :location local)
-    helm-notmuch
-    nm
+    (mew :toggle (eq social-default-mail-client 'mew))
+    (notmuch :toggle (eq social-default-mail-client 'notmuch)
+             :location site)
+    (ace-link-notmuch :toggle (configuration-layer/package-usedp 'notmuch)
+                      :location local)
+    (helm-notmuch :toggle (configuration-layer/package-usedp 'notmuch))
+    (nm :toggle (configuration-layer/package-usedp 'notmuch))
     )
   "The Social Layer, including mail reader, blog, chat, and RSS reader.")
 
@@ -43,26 +44,26 @@
     :init
     (spacemacs/set-leader-keys "aig" 'gitter)))
 
-;; (defun social/init-mew ()
-;;   "Initialize mew"
-;;   (use-package mew
-;;     :defer t
-;;     :init
-;;     (progn
-;;       (spacemacs/set-leader-keys "aw" 'mew)
-;;       (if (boundp 'read-mail-command)
-;;           (setq read-mail-command 'mew))
-;;       (if (fboundp 'define-mail-user-agent)
-;;           (define-mail-user-agent
-;;             'mew-user-agent
-;;             'mew-user-agent-compose
-;;             'mew-draft-send-message
-;;             'mew-draft-kill
-;;             'mew-send-hook)))
-;;     :config
-;;     (progn
-;;       ;; Currently I don't want to use evilified state in mew.
-;;       (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
+(defun social/init-mew ()
+  "Initialize mew"
+  (use-package mew
+    :defer t
+    :init
+    (progn
+      (spacemacs/set-leader-keys "aw" 'mew)
+      (if (boundp 'read-mail-command)
+          (setq read-mail-command 'mew))
+      (if (fboundp 'define-mail-user-agent)
+          (define-mail-user-agent
+            'mew-user-agent
+            'mew-user-agent-compose
+            'mew-draft-send-message
+            'mew-draft-kill
+            'mew-send-hook)))
+    :config
+    (progn
+      ;; Currently I don't want to use evilified state in mew.
+      (add-to-list 'evil-emacs-state-modes 'mew-summary-mode))))
 
 (defun social/init-notmuch ()
   "Initialize Notmuch"
