@@ -88,3 +88,4 @@
     Something Interesting.
 ** Emacs                                                             :Emacs:
 *** [[http://www.emacsist.com/rss][Emacsist]]
+*** [[http://planet.emacsen.org/atom.xml][Planet Emacsen]]
