@@ -11,13 +11,14 @@
 
 (defconst deprave-packages
   '(
+    (multi-keys
+     :location (recipe
+                :fetcher github
+                :repo "Liu233w/multi-keys.el"))
     gnus
     elfeed
     chinese-pyim-basedict
     chinese-pyim
-    (multi-keys :location (recipe
-                           :fetcher github
-                           :repo "Liu233w/multi-keys.el"))
     company
     smex
     helm-smex
@@ -28,6 +29,18 @@
     header2
     )
   "The Improved Spacemacs Layer.")
+
+(defun deprave/init-multi-keys ()
+  "Initialize multi-keys"
+  (require 'multi-keys)
+  (spacemacs|add-toggle multi-keys
+    :mode multi-keys-mode
+    :documentation
+    "Toggle binded commands of combinations of key-strokes."
+    :evil-leader "tk")
+
+  (global-multi-keys-mode)
+  (spacemacs|diminish multi-keys-mode))
 
 (defun deprave/init-gnus ()
   "Initialize gnus"
@@ -194,25 +207,7 @@
                   '(pyim-probe-punctuation-line-beginning
                     pyim-probe-punctuation-after-punctuation))
     (setq pyim-isearch-enable-pinyin-search t
-          pyim-page-tooltip 'popup)
-    (multi-keys-define-global "kl" 'pyim-convert-code-at-point)
-    (multi-keys-define-global (kbd ";\'") 'pyim-punctuation-translate-at-point)
-    ))
-
-(defun deprave/init-multi-keys ()
-  "Initialize multi-keys"
-  (use-package multi-keys
-    :ensure t
-    :config
-    (progn
-      (spacemacs|add-toggle multi-keys
-        :mode multi-keys-mode
-        :documentation
-        "Toggle binded commands of combinations of key-strokes."
-        :evil-leader "tk")
-
-      (global-multi-keys-mode)
-      (spacemacs|diminish multi-keys-mode))))
+          pyim-page-tooltip 'popup)))
 
 (defun deprave/init-smex ()
   "Initialize smex"
