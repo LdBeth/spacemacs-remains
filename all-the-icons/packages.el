@@ -15,9 +15,9 @@
   '(all-the-icons
     neotree
     all-the-icons-dired
-    (spaceline-all-the-icons :location local)
+    ;;(spaceline-all-the-icons :location local)
     )
-  "The list of Lisp packages required by the all-the-icons layer. ")
+  "The list of Lisp packages required by the all-the-icons layer.")
 
 (defun all-the-icons/init-all-the-icons ()
   "Initialize all-the-incons."
@@ -32,18 +32,17 @@
   (use-package all-the-icons-dired
     :defer t
     :init
+    ;; TODO It seems there are some bugs.
+    (add-hook 'ranger-mode-hook #'ranger-setup)
     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
     :config
     (spacemacs|diminish all-the-icons-dired-mode)))
 
-(defun all-the-icons/init-spaceline-all-the-icons ()
-  "Add all-the-icons support for Spaceline."
-  (use-package spaceline-all-the-icons
-    :after spaceline))
-
-(defun all-the-icons/pre-init-spaceline ()
-  (spacemacs|use-package-add-hook spaceline
-    :post-config
-    (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati))))))
+;; (defun all-the-icons/init-spaceline-all-the-icons ()
+;;   "Initialize an alternate spaceline."
+;;   (use-package spaceline-all-the-icons
+;;     :after spaceline)
+;;   (use-package spaceline :after powerline
+;;     :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati))))))
 
 ;;; packages.el ends here
