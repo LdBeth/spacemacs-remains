@@ -33,7 +33,6 @@
     :defer t
     :init
     ;; TODO It seems there are some bugs.
-    (add-hook 'ranger-mode-hook #'ranger-setup)
     (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
     :config
     (spacemacs|diminish all-the-icons-dired-mode)))
