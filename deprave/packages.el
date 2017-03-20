@@ -207,7 +207,7 @@
                   '(pyim-probe-punctuation-line-beginning
                     pyim-probe-punctuation-after-punctuation))
     (setq pyim-isearch-enable-pinyin-search t
-          pyim-page-tooltip 'popup)))
+          pyim-page-tooltip 'pos-tip)))
 
 (defun deprave/init-smex ()
   "Initialize smex"
