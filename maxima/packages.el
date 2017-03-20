@@ -12,27 +12,25 @@
 ;;; Code:
 
 (defconst maxima-packages
-  '((maxima :location local))
+  '((maxima :location site))
   "Maxima, the Lisp CAS.")
 
 (defun maxima/init-maxima ()
   (use-package maxima
     :defer t
+    :load-path "/usr/local/share/maxima/5.38.1/emacs"
+    :commands
+    (maxima ;; Enhanced terminal mode
+     maxima-mode ;; Maxima-mode
+     )
     :init
     (progn
       ;; Automatic enable EMaxima-mode
       (add-hook 'emaxima-mode-hook 'emaxima-mark-file-as-emaxima)
       ;; Associate files ending in .max with particular Emacs mode
       (setq auto-mode-alist (cons '("\\.max" . maxima-mode) auto-mode-alist))
-      ;; Enhanced terminal mode
-      (autoload 'maxima "maxima" "Maxima interaction" t)
-      ;; Maxima-mode
-      (autoload 'maxima-mode "maxima" "Maxima mode" t)
       ;; Emaxima
-      (autoload 'emaxima-mode "emaxima" "EMaxima" t)
-      )
-    )
-  )
+      (autoload 'emaxima-mode "emaxima" "EMaxima" t))))
 
 ;;; packages.el ends here
 

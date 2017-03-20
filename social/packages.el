@@ -69,8 +69,7 @@
   "Initialize Notmuch"
   (use-package notmuch
     :defer t
-    :load-path
-    "/usr/local/share/emacs/site-lisp/notmuch"
+    :load-path "/usr/local/share/emacs/site-lisp/notmuch"
     :commands notmuch
     :init
     (progn
