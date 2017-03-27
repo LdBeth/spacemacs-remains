@@ -22,7 +22,7 @@
     (ace-link-notmuch :toggle (configuration-layer/package-usedp 'notmuch)
                       :location local)
     (helm-notmuch :toggle (configuration-layer/package-usedp 'notmuch))
-    (nm :toggle (configuration-layer/package-usedp 'notmuch))
+    wanderlust
     )
   "The Social Layer, including mail reader, blog, chat, and RSS reader.")
 
@@ -75,8 +75,7 @@
     (progn
       (spacemacs/set-leader-keys
         "ann" 'notmuch
-        "ans" 'helm-notmuch
-        "anm" 'nm))
+        "ans" 'helm-notmuch))
     :config
     (progn
       (add-to-list 'evil-emacs-state-modes 'notmuch-mode)
@@ -118,15 +117,26 @@
   (use-package helm-notmuch
     :defer t))
 
-(defun social/init-nm ()
-  "Initialize NERVERMORE"
-  (use-package nm
+(defun social/init-wanderlust ()
+  "Initialize WanderLust."
+  (use-package wanderlust
     :defer t
-    :config
-    (progn
-      (add-to-list 'evil-emacs-state-modes 'nm-mode)
-      (define-key nm-mode-map (kbd "j") 'forward-line)
-      (define-key nm-mode-map (kbd "k") 'previous-line)
-      )))
+    :init
+    (spacemacs/set-leader-keys "anw" 'wl)
+    (if (boundp 'mail-user-agent)
+        (setq mail-user-agent 'wl-user-agent))
+    (if (fboundp 'define-mail-user-agent)
+        (define-mail-user-agent
+          'wl-user-agent
+          'wl-user-agent-compose
+          'wl-draft-send
+          'wl-draft-kill
+          'mail-send-hook))
+    (with-eval-after-load 'wanderlust
+      (dolist (mode '(wl-message-mode-hook
+                      wl-summary-mode-hook
+                      wl-folder-mode-hook
+                      wl-draft-mode-hook))
+        (add-hook mode 'evil-emacs-state)))))
 
 ;;; packages.el ends here
