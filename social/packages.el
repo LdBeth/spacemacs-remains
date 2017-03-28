@@ -109,10 +109,11 @@
           'wl-draft-kill
           'mail-send-hook))
     :config
-    (dolist (mode '(wl-message-mode-hook
-                    wl-summary-mode-hook
-                    wl-folder-mode-hook
-                    wl-draft-mode-hook))
-      (add-hook mode 'evil-emacs-state))))
+    (dolist (mode '(wl-message-mode
+                    wl-summary-mode
+                    wl-folder-mode
+                    wl-draft-mode
+                    mime-view-mode))
+      (add-to-list 'evil-emacs-state-modes mode))))
 
 ;;; packages.el ends here
