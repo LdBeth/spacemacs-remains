@@ -19,6 +19,7 @@
     elfeed
     chinese-pyim-basedict
     chinese-pyim
+    org
     company
     smex
     helm-smex
@@ -142,6 +143,10 @@
                     pyim-probe-punctuation-after-punctuation))
     (setq pyim-isearch-enable-pinyin-search t
           pyim-page-tooltip 'pos-tip)))
+
+(defun deprave/post-init-org ()
+  "Config LaTeX Chinese compability."
+  (setq org-latex-compiler "xelatex"))
 
 (defun deprave/init-smex ()
   "Initialize smex"
