@@ -14,7 +14,8 @@
     (multi-keys
      :location (recipe
                 :fetcher github
-                :repo "Liu233w/multi-keys.el"))
+                :repo "Liu233w/multi-keys.el"
+                :branch "feature-keymap"))
     gnus
     elfeed
     chinese-pyim-basedict
