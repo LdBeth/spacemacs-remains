@@ -18,6 +18,7 @@
                 :fetcher github
                 :repo "LdBeth/aria2.el"))
     (eww :location built-in)
+    wc-mode
     )
   "The Utility Layer, including some useful tools.")
 
@@ -80,5 +81,12 @@
 (defun utility/pre-init-eww ()
   (with-eval-after-load 'url
     (evilified-state-evilify url-cookie-mode url-cookie-mode-map)))
+
+(defun utility/init-wc-mode ()
+  "Initialize `wc-mode'."
+  (use-package wc-mode
+    :defer t
+    :config
+    (setq wc-modeline-format "[%tw:%w/%gw]")))
 
 ;;; packages.el ends here

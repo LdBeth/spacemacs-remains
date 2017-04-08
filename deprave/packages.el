@@ -105,12 +105,14 @@
                 (gnus-summary-mark-as-read-forward 1))
             (gnus-summary-scroll-up arg))))
       (add-to-list 'nnmail-extra-headers nnrss-url-field)
+      (define-key gnus-summary-mode-map
+        (kbd "<RET>") 'spacemacs/browse-nnrss-url)
 
-      (dolist (modes '('gnus-group-mode
-                       'gnus-server-mode
-                       'gnus-browse-mode
-                       'gnus-article-mode
-                       'gnus-summary-mode))
+      (dolist (modes '(gnus-group-mode
+                       gnus-server-mode
+                       gnus-browse-mode
+                       gnus-article-mode
+                       gnus-summary-mode))
         (add-to-list 'evil-emacs-state-modes modes)))))
 
 (defun deprave/pre-init-elfeed ()
@@ -173,26 +175,22 @@
       )))
 
 (defun deprave/post-init-company ()
-  (spacemacs|add-company-hook text-mode)
-  (with-eval-after-load 'company
-    (push 'company-ispell company-backends-text-mode)
-    (defun spell/toggle-company-ispell ()
-      "Toggles company-ispell"
-      (interactive)
-      (cond
-       ((memq 'company-ispell company-backends)
-        (setq company-backends
-              (delete 'company-ispell company-backends))
-        (message "company-ispell disabled."))
-       (t
-        (add-to-list 'company-backends 'company-ispell)
-        (message "company-ispell enabled."))))
-    (spacemacs/set-leader-keys "Si" 'spell/toggle-company-ispell)))
+  (spacemacs|add-company-backends :backends company-ispell :modes text-mode)
+  (defun spell/toggle-company-ispell ()
+    "Toggles company-ispell"
+    (interactive)
+    (cond
+     ((memq 'company-ispell company-backends)
+      (setq company-backends
+            (delete 'company-ispell company-backends))
+      (message "company-ispell disabled."))
+     (t
+      (add-to-list 'company-backends 'company-ispell)
+      (message "company-ispell enabled."))))
+  (spacemacs/set-leader-keys "Si" 'spell/toggle-company-ispell))
 
-(defun deprave/pre-init-slime ()
-  (spacemacs|use-package-add-hook slime
-    :post-init
-    (setq inferior-lisp-program "clisp")))
+(defun deprave/post-init-slime ()
+  (setq inferior-lisp-program "clisp"))
 
 (defun deprave/pre-init-eshell ()
   (spacemacs|use-package-add-hook eshell
