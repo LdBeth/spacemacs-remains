@@ -34,12 +34,12 @@
     :config
     (evilified-state-evilify hexo-mode hexo-mode-map)))
 
-(defun social/init-gitter ()
-  "Initialize gitter"
-  (use-package gitter
-    :defer t
-    :init
-    (spacemacs/set-leader-keys "aig" 'gitter)))
+;; (defun social/init-gitter ()
+;;   "Initialize gitter"
+;;   (use-package gitter
+;;     :defer t
+;;     :init
+;;     (spacemacs/set-leader-keys "aig" 'gitter)))
 
 (defun social/init-notmuch ()
   "Initialize Notmuch"
@@ -98,16 +98,24 @@
   (use-package wl
     :defer t
     :init
-    (spacemacs/set-leader-keys "anw" 'wl)
-    (if (boundp 'mail-user-agent)
-        (setq mail-user-agent 'wl-user-agent))
-    (if (fboundp 'define-mail-user-agent)
-        (define-mail-user-agent
-          'wl-user-agent
-          'wl-user-agent-compose
-          'wl-draft-send
-          'wl-draft-kill
-          'mail-send-hook))
+    (progn
+      (spacemacs/set-leader-keys
+        "anw" 'wl
+        "anm" 'compose-mail)
+      (if (boundp 'mail-user-agent)
+          (setq mail-user-agent 'wl-user-agent))
+      (if (fboundp 'define-mail-user-agent)
+          (define-mail-user-agent
+            'wl-user-agent
+            'wl-user-agent-compose
+            'wl-draft-send
+            'wl-draft-kill
+            'mail-send-hook))
+      (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
+        dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
+        "k" 'wl-draft-kill
+        "s" 'wl-draft-save
+        "z" 'wl-draft-save-and-exit))
     :config
     (progn
       (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason

@@ -227,16 +227,12 @@
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
     :defer t
-    :init
-    (with-eval-after-load 'eshell
-      (require 'pcomplete-extension))))
+    :after eshell))
 
 (defun deprave/init-pcmpl-homebrew ()
   (use-package pcmpl-homebrew
     :defer t
-    :init
-    (with-eval-after-load 'eshell
-      (require 'pcmpl-homebrew))))
+    :after eshell))
 
 (defun deprave/init-header2 ()
   (use-package header2

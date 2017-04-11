@@ -78,8 +78,6 @@
     感觉倒像是新闻站。
 ** Views & Attitudes                                                  :View:
 *** [[http://www.nbweekly.com/rss/smw/][南都周刊]]
-*** [[http://news.163.com/special/00011K6L/rss_newsattitude.xml][网易]]
-    很久没更新了的样子。
 ** Recommendations                                                    :Push:
 *** [[http://animetaste.net/feed][Anime Taste]]                                                         :ACG:
 *** [[http://www.zreading.cn/feed][左岸读书]]
