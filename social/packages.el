@@ -111,11 +111,15 @@
             'wl-draft-send
             'wl-draft-kill
             'mail-send-hook))
-      (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
-        dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
-        "k" 'wl-draft-kill
-        "s" 'wl-draft-save
-        "z" 'wl-draft-save-and-exit))
+      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mm" "mime-edit")
+      (with-eval-after-load 'mime-edit
+        (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
+          dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
+          "k" 'wl-draft-kill
+          "s" 'wl-draft-save
+          "z" 'wl-draft-save-and-exit
+          "m" mime-edit-mode-entity-map
+          )))
     :config
     (progn
       (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason

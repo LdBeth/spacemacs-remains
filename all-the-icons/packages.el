@@ -32,8 +32,10 @@
   (use-package all-the-icons-dired
     :defer t
     :init
-    ;; TODO It seems there are some bugs.
-    (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+    (progn
+      ;; TODO It seems there are some bugs.
+      (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+      (add-hook 'ranger-mode 'dired-readin))
     :config
     (spacemacs|diminish all-the-icons-dired-mode)))
 

@@ -59,16 +59,13 @@
       ;; Use topics per default
       (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
-      (setq gnus-visible-headers
-            "^From:\\|^Reply-To\\|^Organization:\\|^To:\\|^Cc:\\|^Newsgroups:\\|^Subject:\\|^Date:\\|^Gnus")
-
       ;; Show the article headers in this order.
       (setq gnus-sorted-header-list
             '("^From:" "^Reply-To" "^Organization:" "^To:" "^Cc:" "^Newsgroups:"
               "^Subject:" "^Date:" "^Gnus"))
 
       (setq-default
-       gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15f  %B (%c) %s%)\n"
+       gnus-summary-line-format "%U%R%z %(%&user-date;  %-15,15n  %B (%c) %s%)\n"
        gnus-user-date-format-alist '((t . "%Y-%m-%d %H:%M"))
        gnus-group-line-format "%M%S%p%P%5y:%B %G\n";;"%B%(%g%)"
        gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references

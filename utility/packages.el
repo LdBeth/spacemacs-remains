@@ -17,7 +17,8 @@
      :location (recipe
                 :fetcher github
                 :repo "LdBeth/aria2.el"))
-    (eww :location built-in)
+    ;; (eww :location built-in)
+    w3m
     wc-mode
     )
   "The Utility Layer, including some useful tools.")
@@ -81,6 +82,17 @@
 (defun utility/pre-init-eww ()
   (with-eval-after-load 'url
     (evilified-state-evilify url-cookie-mode url-cookie-mode-map)))
+
+(defun utility/init-w3m ()
+  "Initialize w3m."
+  (use-package w3m
+    :defer t
+    :init
+    (progn
+      (spacemacs/set-leader-keys "an3" 'w3m))
+    :config
+    (setq w3m-default-display-inline-images t
+          w3m-use-cookies t)))
 
 (defun utility/init-wc-mode ()
   "Initialize `wc-mode'."
