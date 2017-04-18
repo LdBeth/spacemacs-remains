@@ -18,12 +18,18 @@
   The Improved Spacemacs Layer.
   Here is some improvement of the existed problems of Spacemacs.
 
+** multi-keys
+   A key chord imput method.
+
 ** Gnus
    Added shadowed bindings to major mode prefix.
 
 ** Elfeed
    Bind =elfeed/split-show-next= and =elfeed/split-show-prev= to
    ~J~ and ~k~.
+
+** Erc
+   A little changes on timestamp.
 
 ** Chinese-pyim
    Automatic enable Chinese pyim input method.
@@ -37,9 +43,12 @@
 ** Eshell
    Added =pcomlete-extension= and =pcml-homebrew=.
 
+** header2
+   Auto make header.
+
 * EMMS Layer
   The Emacs Media Manger Layer. It is pending and will be included
-  in Spacemacs in the future.
+  in Spacemacs in the future. (Well, not yet.)
 
 * Maxima Layer
   The Lisp Computer Algebra System. Not completed yet.
@@ -51,11 +60,8 @@
    Writing blogs using hexo as backend.
    ~SPC a b~ to start.
 
-** gitter.el
-   A simple program to chat in Gitter.
-
-** Mew Layer
-  Mail in Emacs World.
+** WandeLust
+   Yet another Emacs mail client.
 
 * Utility Layer
   Network utility, including aira2 and eww. There are some problems
@@ -67,6 +73,21 @@
 
 ** eww
    Using Emacs to browse web.
+
+** w3m
+   An Emacs pager interface to w3m.
+
+** namazu
+   A text search engine.
+
+** wc-mode
+   Count words and set goals.
+
+* Game Machine Layer
+  Provide some games.
+
+* all-the-icons Layer
+  Provide fancy icons.
 
 * RSS Feeds                                                          :elfeed:
   I use elfeed-org to manage my RSS Feeds.

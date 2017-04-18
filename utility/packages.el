@@ -19,6 +19,7 @@
                 :repo "LdBeth/aria2.el"))
     ;; (eww :location built-in)
     w3m
+    (namazu :location local)
     wc-mode
     )
   "The Utility Layer, including some useful tools.")
@@ -93,6 +94,12 @@
     :config
     (setq w3m-default-display-inline-images t
           w3m-use-cookies t)))
+
+(defun utility/init-namazu ()
+  "Initialize namazu."
+  (use-package namazu
+    :defer t
+    :commands namazu))
 
 (defun utility/init-wc-mode ()
   "Initialize `wc-mode'."

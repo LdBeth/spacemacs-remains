@@ -18,9 +18,9 @@
                 :branch "feature-keymap"))
     gnus
     elfeed
+    erc
     chinese-pyim-basedict
     chinese-pyim
-    org
     company
     smex
     helm-smex
@@ -125,6 +125,12 @@
     (evil-define-key 'evilified elfeed-show-mode-map "K"
       'elfeed-goodies/split-show-prev)))
 
+(defun deprave/pre-init-erc ()
+  (spacemacs|use-package-add-hook erc
+    :post-config
+    (setq erc-insert-timestamp-function 'erc-insert-timestamp-left
+          erc-timestamp-format "%H%M>")))
+
 (defun deprave/init-chinese-pyim-basedict ()
   "Initialize chinese-pyim-basedict"
   (use-package chinese-pyim-basedict
@@ -143,10 +149,6 @@
                     pyim-probe-punctuation-after-punctuation))
     (setq pyim-isearch-enable-pinyin-search t
           pyim-page-tooltip 'pos-tip)))
-
-(defun deprave/post-init-org ()
-  "Config LaTeX Chinese compability."
-  (setq org-latex-compiler "xelatex"))
 
 (defun deprave/init-smex ()
   "Initialize smex"
