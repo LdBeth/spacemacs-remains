@@ -19,8 +19,10 @@
                 :repo "LdBeth/aria2.el"))
     ;; (eww :location built-in)
     w3m
+    shimbun
     (namazu :location local)
     wc-mode
+    dklrt
     )
   "The Utility Layer, including some useful tools.")
 
@@ -93,7 +95,13 @@
       (spacemacs/set-leader-keys "an3" 'w3m))
     :config
     (setq w3m-default-display-inline-images t
-          w3m-use-cookies t)))
+          w3m-use-cookies t
+          w3m-namazu-default-index nil)))
+
+(defun utility/init-shimbun ()
+  "Initialize shimbun."
+  (use-package shimbun
+    :defer t))
 
 (defun utility/init-namazu ()
   "Initialize namazu."
@@ -107,5 +115,10 @@
     :defer t
     :config
     (setq wc-modeline-format "[%tw:%w/%gw]")))
+
+(defun utility/init-dklrt ()
+  "Initialize dklrt."
+  (use-package dklrt
+    :defer t))
 
 ;;; packages.el ends here

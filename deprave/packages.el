@@ -9,6 +9,13 @@
 ;;
 ;;; License: GPLv3
 
+;; This is used when byte compile this file.
+(eval-when-compile
+  (require 'gnus)
+  (require 'gnus-sum)
+  (require 'erc-stamp)
+  (require 'eshell))
+
 (defconst deprave-packages
   '(
     (multi-keys
@@ -127,12 +134,14 @@
 
 (defun deprave/pre-init-erc ()
   (spacemacs|use-package-add-hook erc
+    :post-init
+    (spacemacs/set-leader-keys "ais" 'erc-server-select)
     :post-config
     (setq erc-insert-timestamp-function 'erc-insert-timestamp-left
-          erc-timestamp-format "%H%M>")))
+          erc-timestamp-format "%H%M ")))
 
 (defun deprave/init-chinese-pyim-basedict ()
-  "Initialize chinese-pyim-basedict"
+  "Initialize chinese-pyim-basedict."
   (use-package chinese-pyim-basedict
     :defer t))
 
@@ -151,7 +160,7 @@
           pyim-page-tooltip 'pos-tip)))
 
 (defun deprave/init-smex ()
-  "Initialize smex"
+  "Initialize smex."
   (use-package smex
     :defer t
     :init
@@ -205,12 +214,29 @@
                 (insert "ls -a")
                 (eshell-send-input))
             (eshell-send-input))))
+      (defun eshell/cat (filename)
+      "Like cat(1) but with syntax highlighting."
+      (let ((existing-buffer (get-file-buffer filename))
+            (buffer (find-file-noselect filename)))
+        (eshell-print
+         (with-current-buffer buffer
+           (if (fboundp 'font-lock-ensure)
+               (font-lock-ensure)
+             (with-no-warnings
+               (font-lock-fontify-buffer)))
+           (buffer-string)))
+        (unless existing-buffer
+          (kill-buffer buffer))
+        nil))
+
       (add-hook 'eshell-mode-hook
                 (lambda ()
                   (local-set-key (kbd "<RET>") 'deprave/return)))
       (mapc (lambda (x) (push x eshell-visual-commands))
             '("vim" "mutt" "nethack" "rtorrent" "w3m"))
       ;; Time stamp
+      (defvar deprave/last-command-start-time nil
+        "A time counter for eshell.")
       (add-hook 'eshell-load-hook
                 (lambda () (setq deprave/last-command-start-time
                                  (time-to-seconds))))
