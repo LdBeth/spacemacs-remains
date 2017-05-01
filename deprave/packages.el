@@ -30,8 +30,8 @@
     chinese-pyim
     company
     smex
-    helm-smex
     slime
+    helm-smex
     (eshell :location built-in)
     pcomplete-extension
     pcmpl-homebrew
@@ -169,6 +169,15 @@
                     smex-save-file (concat spacemacs-cache-directory
                                            ".smex-items")))))
 
+(defun deprave/pre-init-slime ()
+  (spacemacs|use-package-add-hook slime
+    :pre-config
+    (progn
+      (setq slime-company-completion 'fuzzy)
+      (add-to-list 'slime-contribs 'slime-company))
+    :post-config
+    (setq inferior-lisp-program "ccl")))
+
 (defun deprave/init-helm-smex ()
   (use-package helm-smex
     :init
@@ -179,26 +188,24 @@
                 (lambda () (spacemacs/set-leader-keys
                              dotspacemacs-emacs-command-key 'helm-M-x)))
       (spacemacs/set-leader-keys ":" #'helm-smex-major-mode-commands)
-      (global-set-key (kbd "M-x") #'helm-smex)
-      )))
+      (global-set-key (kbd "M-x") #'helm-smex))))
 
 (defun deprave/post-init-company ()
-  (spacemacs|add-company-backends :backends company-ispell :modes text-mode)
+  (spacemacs|add-company-backends
+    :backends company-ispell
+    :modes text-mode)
   (defun spell/toggle-company-ispell ()
     "Toggles company-ispell"
     (interactive)
     (cond
      ((memq 'company-ispell company-backends)
       (setq company-backends
-            (delete 'company-ispell company-backends))
+            (delq 'company-ispell company-backends))
       (message "company-ispell disabled."))
      (t
       (add-to-list 'company-backends 'company-ispell)
       (message "company-ispell enabled."))))
   (spacemacs/set-leader-keys "Si" 'spell/toggle-company-ispell))
-
-(defun deprave/post-init-slime ()
-  (setq inferior-lisp-program "clisp"))
 
 (defun deprave/pre-init-eshell ()
   (spacemacs|use-package-add-hook eshell
@@ -214,7 +221,7 @@
                 (insert "ls -a")
                 (eshell-send-input))
             (eshell-send-input))))
-      (defun eshell/cat (filename)
+      (defun eshell/catx (filename)
       "Like cat(1) but with syntax highlighting."
       (let ((existing-buffer (get-file-buffer filename))
             (buffer (find-file-noselect filename)))
@@ -233,21 +240,7 @@
                 (lambda ()
                   (local-set-key (kbd "<RET>") 'deprave/return)))
       (mapc (lambda (x) (push x eshell-visual-commands))
-            '("vim" "mutt" "nethack" "rtorrent" "w3m"))
-      ;; Time stamp
-      (defvar deprave/last-command-start-time nil
-        "A time counter for eshell.")
-      (add-hook 'eshell-load-hook
-                (lambda () (setq deprave/last-command-start-time
-                                 (time-to-seconds))))
-      (add-hook 'eshell-pre-command-hook
-                (lambda () (setq deprave/last-command-start-time
-                                 (time-to-seconds))))
-      (add-hook 'eshell-before-prompt-hook
-                (lambda ()
-                  (message "%g Sec"
-                           (- (time-to-seconds)
-                              deprave/last-command-start-time)))))))
+            '("vim" "mutt" "nethack" "rtorrent" "w3m")))))
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension

@@ -14,15 +14,17 @@
 (defconst utility-packages
   '(
     (aria2
-     :location (recipe
-                :fetcher github
-                :repo "LdBeth/aria2.el"))
-    ;; (eww :location built-in)
+     :location
+     (recipe
+      :fetcher github
+      :repo "LdBeth/aria2.el"))
+    (eww :location built-in)
     w3m
     shimbun
     (namazu :location local)
     wc-mode
     dklrt
+    graphviz-dot-mode
     )
   "The Utility Layer, including some useful tools.")
 
@@ -119,6 +121,11 @@
 (defun utility/init-dklrt ()
   "Initialize dklrt."
   (use-package dklrt
+    :defer t))
+
+(defun utility/init-graphviz-dot-mode ()
+  "Initialize graphviz-dot-mode."
+  (use-package graphviz-dot-mode
     :defer t))
 
 ;;; packages.el ends here

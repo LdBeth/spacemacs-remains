@@ -16,6 +16,7 @@
     (hexo :location (recipe
                      :fetcher github
                      :repo "LdBeth/hexo.el"))
+    ;; notmuch
     (notmuch :location site)
     (ace-link-notmuch :location local)
     helm-notmuch
