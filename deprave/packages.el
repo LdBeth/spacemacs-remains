@@ -171,10 +171,6 @@
 
 (defun deprave/pre-init-slime ()
   (spacemacs|use-package-add-hook slime
-    :pre-config
-    (progn
-      (setq slime-company-completion 'fuzzy)
-      (add-to-list 'slime-contribs 'slime-company))
     :post-config
     (setq inferior-lisp-program "ccl")))
 
