@@ -91,20 +91,29 @@
 
 * RSS Feeds                                                          :elfeed:
   I use elfeed-org to manage my RSS Feeds.
+
 ** News                                                               :News:
 *** [[http://www.solidot.org/index.rss][Solidot]]
 *** [[http://www.acgpiping.net/feed/][ACG 批评]]                                                            :ACG:
+
 ** Blogs
 *** [[http://feed.williamlong.info/][月光博客]]
     感觉倒像是新闻站。
+
 ** Views & Attitudes                                                  :View:
 *** [[http://www.nbweekly.com/rss/smw/][南都周刊]]
+
 ** Recommendations                                                    :Push:
 *** [[http://animetaste.net/feed][Anime Taste]]                                                         :ACG:
 *** [[http://www.zreading.cn/feed][左岸读书]]
+   
+** Music                                                               :ACG:
+*** [[http://koe.anime-sharing.com/feed/][Anime Sharing]]
+
 ** Comics                                                             :Pics:
 *** [[https://xkcd.com/rss.xml][xkcd]]
     Something Interesting.
+
 ** Emacs                                                             :Emacs:
 *** [[http://www.emacsist.com/rss][Emacsist]]
 *** [[http://planet.emacsen.org/atom.xml][Planet Emacsen]]

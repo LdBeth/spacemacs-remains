@@ -34,16 +34,12 @@
     :init
     (progn
       ;; TODO It seems there are some bugs.
-      (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-      (add-hook 'ranger-mode 'dired-readin))
+      (defun spacemacs/delay-all-the-icons-dired-mode ()
+        "Work around for ranger."
+        (run-at-time 0.01 nil 'all-the-icons-dired-mode))
+      (add-hook 'dired-mode-hook
+                'spacemacs/delay-all-the-icons-dired-mode))
     :config
     (spacemacs|diminish all-the-icons-dired-mode)))
-
-;; (defun all-the-icons/init-spaceline-all-the-icons ()
-;;   "Initialize an alternate spaceline."
-;;   (use-package spaceline-all-the-icons
-;;     :after spaceline)
-;;   (use-package spaceline :after powerline
-;;     :config (setq-default mode-line-format '("%e" (:eval (spaceline-ml-ati))))))
 
 ;;; packages.el ends here
