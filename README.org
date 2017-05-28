@@ -60,6 +60,9 @@
    Writing blogs using hexo as backend.
    ~SPC a b~ to start.
 
+** Notmuch
+   Maybe the best Mail index builder.
+
 ** WandeLust
    Yet another Emacs mail client.
 
@@ -77,11 +80,23 @@
 ** w3m
    An Emacs pager interface to w3m.
 
+** Shimbun
+   Japanese style news reader.
+
 ** namazu
    A text search engine.
 
 ** wc-mode
    Count words and set goals.
+
+** Ledger
+   Extra utility by =dklrt=.
+
+** Graphviz
+   Great lib to draw pics.
+
+** EVALATOR
+   Modern REPL.
 
 * Game Machine Layer
   Provide some games.

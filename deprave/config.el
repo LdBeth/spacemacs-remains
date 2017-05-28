@@ -3,7 +3,9 @@
 ;;; helm-ag
       helm-ag-base-command "pt -e --nocolor --nogroup"
 ;;; Mutt
-      auto-mode-alist (cons '("/mutt" . mail-mode) auto-mode-alist))
+      auto-mode-alist (cons '("/mutt" . mail-mode) auto-mode-alist)
+;;; Magithub
+      magithub-api-timeout 5)
 ;;; LaTeX
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 ;;; Conkeror.el

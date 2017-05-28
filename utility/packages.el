@@ -25,6 +25,7 @@
     wc-mode
     dklrt
     graphviz-dot-mode
+    evalator
     )
   "The Utility Layer, including some useful tools.")
 
@@ -127,5 +128,11 @@
   "Initialize graphviz-dot-mode."
   (use-package graphviz-dot-mode
     :defer t))
+
+(defun utility/init-evalator ()
+  "Initialize a REPL."
+  (use-package evalator
+    :defer t
+    :init (spacemacs/register-repl 'evalator 'evalator "evalator")))
 
 ;;; packages.el ends here
