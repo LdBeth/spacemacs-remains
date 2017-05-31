@@ -119,8 +119,8 @@
           "k" 'wl-draft-kill
           "s" 'wl-draft-save
           "z" 'wl-draft-save-and-exit
-          "m" mime-edit-mode-entity-map
-          )))
+          "m" mime-edit-mode-entity-map))
+      (setq org-mime-library 'semi))
     :config
     (progn
       (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason

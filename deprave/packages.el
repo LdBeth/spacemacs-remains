@@ -17,8 +17,7 @@
   (require 'eshell))
 
 (defconst deprave-packages
-  '(
-    (multi-keys
+  '((multi-keys
      :location (recipe
                 :fetcher github
                 :repo "Liu233w/multi-keys.el"
@@ -33,10 +32,10 @@
     slime
     helm-smex
     (eshell :location built-in)
+    esh-buf-stack
     pcomplete-extension
     pcmpl-homebrew
-    header2
-    )
+    header2)
   "The Improved Spacemacs Layer.")
 
 (defun deprave/init-multi-keys ()
@@ -207,36 +206,19 @@
   (spacemacs|use-package-add-hook eshell
     :post-config
     (progn
-      ;; Useful functions
-      (defalias 'eshell/quit 'eshell/exit)
-      (defun deprave/return ()
-        (interactive)
-        (let ((input (eshell-get-old-input)))
-          (if (string-equal input "")
-              (progn
-                (insert "ls -a")
-                (eshell-send-input))
-            (eshell-send-input))))
-      (defun eshell/catx (filename)
-      "Like cat(1) but with syntax highlighting."
-      (let ((existing-buffer (get-file-buffer filename))
-            (buffer (find-file-noselect filename)))
-        (eshell-print
-         (with-current-buffer buffer
-           (if (fboundp 'font-lock-ensure)
-               (font-lock-ensure)
-             (with-no-warnings
-               (font-lock-fontify-buffer)))
-           (buffer-string)))
-        (unless existing-buffer
-          (kill-buffer buffer))
-        nil))
-
+      (setup-eshell-buf-stack)
       (add-hook 'eshell-mode-hook
                 (lambda ()
-                  (local-set-key (kbd "<RET>") 'deprave/return)))
+                  (progn
+                    (local-set-key (kbd "<RET>") 'deprave/return)
+                    (local-set-key (kbd "M-q") 'eshell-push-command))))
       (mapc (lambda (x) (push x eshell-visual-commands))
             '("vim" "mutt" "nethack" "rtorrent" "w3m")))))
+
+(defun deprave/init-esh-buf-stack ()
+  (use-package esh-buf-stack
+    :defer t
+    :after eshell))
 
 (defun deprave/init-pcomplete-extension ()
   (use-package pcomplete-extension
