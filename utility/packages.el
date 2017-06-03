@@ -12,8 +12,7 @@
 ;;; Code:
 
 (defconst utility-packages
-  '(
-    (aria2
+  '((aria2
      :location
      (recipe
       :fetcher github
@@ -24,9 +23,7 @@
     (namazu :location local)
     wc-mode
     dklrt
-    graphviz-dot-mode
-    evalator
-    )
+    evalator)
   "The Utility Layer, including some useful tools.")
 
 (defun utility/init-aria2 ()
@@ -122,11 +119,6 @@
 (defun utility/init-dklrt ()
   "Initialize dklrt."
   (use-package dklrt
-    :defer t))
-
-(defun utility/init-graphviz-dot-mode ()
-  "Initialize graphviz-dot-mode."
-  (use-package graphviz-dot-mode
     :defer t))
 
 (defun utility/init-evalator ()

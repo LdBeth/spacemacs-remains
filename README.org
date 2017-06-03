@@ -92,9 +92,6 @@
 ** Ledger
    Extra utility by =dklrt=.
 
-** Graphviz
-   Great lib to draw pics.
-
 ** EVALATOR
    Modern REPL.
 

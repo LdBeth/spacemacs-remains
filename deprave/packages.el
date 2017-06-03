@@ -183,7 +183,13 @@
                 (lambda () (spacemacs/set-leader-keys
                              dotspacemacs-emacs-command-key 'helm-M-x)))
       (spacemacs/set-leader-keys ":" #'helm-smex-major-mode-commands)
-      (global-set-key (kbd "M-x") #'helm-smex))))
+      (defun helm-smex-or-major-mode-commands (arg)
+        "Call `helm-smex' or `helm-smex-major-mode-commands' depends on prefix ARG."
+        (interactive "P")
+        (if arg
+            (call-interactively #'helm-smex-major-mode-commands)
+          (call-interactively #'helm-smex)))
+      (global-set-key (kbd "M-x") #'helm-smex-or-major-mode-commands))))
 
 (defun deprave/post-init-company ()
   (spacemacs|add-company-backends
@@ -210,7 +216,7 @@
       (add-hook 'eshell-mode-hook
                 (lambda ()
                   (progn
-                    (local-set-key (kbd "<RET>") 'deprave/return)
+                    (local-set-key (kbd "<RET>") 'config/return)
                     (local-set-key (kbd "M-q") 'eshell-push-command))))
       (mapc (lambda (x) (push x eshell-visual-commands))
             '("vim" "mutt" "nethack" "rtorrent" "w3m")))))

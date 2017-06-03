@@ -12,16 +12,12 @@
 ;;; Code:
 
 (defconst social-packages
-  '(
-    (hexo :location (recipe
-                     :fetcher github
-                     :repo "LdBeth/hexo.el"))
+  '(hexo
     notmuch
     ;; (notmuch :location site)
     (ace-link-notmuch :location local)
     helm-notmuch
-    wanderlust
-    )
+    wanderlust)
   "The Social Layer, including mail reader, blog, chat, and RSS reader.")
 
 (defun social/init-hexo ()
@@ -83,8 +79,7 @@
                         (forward-line)
                         (widget-forward 1))
                     (if (eq (widget-type (widget-at)) 'editable-field)
-                        (beginning-of-line)))))
-      )))
+                        (beginning-of-line))))))))
 
 (defun social/init-ace-link-notmuch ()
   (use-package ace-link-notmuch
