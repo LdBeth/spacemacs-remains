@@ -93,6 +93,8 @@ this variable to t."
 (define-geiser-implementation newlisp
   (binary geiser-newlisp--binary)
   (arglist geiser-newlisp--parameters)
+  (version-command geiser-newlisp--version)
+  (minimum-version geiser-newlisp-minimum-version)
   (repl-startup)
   (prompt-regexp)
   (debugger-prompt-regexp)
@@ -103,5 +105,7 @@ this variable to t."
   (display-error)
   (display-help)
   (keywords))
+
+(geiser-impl--add-to-alist 'regexp "\\.lsp$" 'newlisp t)
 
 (provide 'geiser-newlisp)

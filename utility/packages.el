@@ -22,6 +22,8 @@
     shimbun
     (namazu :location local)
     wc-mode
+    artbollocks-mode
+    writeroom-mode
     dklrt
     evalator)
   "The Utility Layer, including some useful tools.")
@@ -115,6 +117,24 @@
     :defer t
     :config
     (setq wc-modeline-format "[%tw:%w/%gw]")))
+
+(defun utility/init-artbollocks-mode ()
+  "Initialize `artbollocks-mode'."
+  (use-package artbollocks-mode
+    :defer t
+    :init
+    (spacemacs|add-toggle artbollocks-grammar
+      :mode artbollocks-mode
+      :documentation "An Emacs minor mode for avoiding cliches and bad grammar when writing about art (or other topics)"
+      :evil-leader "xwg"
+      :on (font-lock-fontify-buffer))))
+
+(defun utility/init-writeroom-mode ()
+  "Initialize `writeroom-mode'."
+  (use-package writeroom-mode
+    :defer t
+    :init
+    (setq writeroom-fullscreen-effect 'fullscreen)))
 
 (defun utility/init-dklrt ()
   "Initialize dklrt."
