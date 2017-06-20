@@ -8,14 +8,7 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-
-;; This is used when byte compile this file.
-(eval-when-compile
-  (require 'gnus)
-  (require 'gnus-sum)
-  (require 'erc-stamp)
-  (require 'eshell))
-
+;;; Code:
 (defconst deprave-packages
   '((multi-keys
      :location (recipe

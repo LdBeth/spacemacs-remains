@@ -8,25 +8,135 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-
 ;;; Code:
-
 (defconst utility-packages
-  '((aria2
-     :location
-     (recipe
-      :fetcher github
-      :repo "LdBeth/aria2.el"))
+  '(hexo
+    notmuch
+    ;; (notmuch :location site)
+    (ace-link-notmuch :location local)
+    helm-notmuch
+    helm-fuzzy-find
+    wanderlust(aria2
+               :location
+               (recipe
+                :fetcher github
+                :repo "LdBeth/aria2.el"))
     (eww :location built-in)
     w3m
     shimbun
     (namazu :location local)
-    wc-mode
-    artbollocks-mode
-    writeroom-mode
-    dklrt
     evalator)
-  "The Utility Layer, including some useful tools.")
+  "The Utility Layer, including some useful network tools.")
+
+(defun utility/init-hexo ()
+  (use-package hexo
+    :defer t
+    :init
+    (defun hexo-my-blog ()
+      (interactive)
+      (hexo "~/blog/"))
+    (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
+    :config
+    (evilified-state-evilify hexo-mode hexo-mode-map)))
+
+;; (defun utility/init-gitter ()
+;;   "Initialize gitter"
+;;   (use-package gitter
+;;     :defer t
+;;     :init
+;;     (spacemacs/set-leader-keys "aig" 'gitter)))
+
+(defun utility/init-notmuch ()
+  "Initialize Notmuch"
+  (use-package notmuch
+    :defer t
+    :load-path "/usr/local/share/emacs/site-lisp/notmuch"
+    :commands notmuch
+    :init
+    (progn
+      (spacemacs/set-leader-keys
+        "ann" 'notmuch
+        "ans" 'helm-notmuch))
+    :config
+    (progn
+      (add-to-list 'evil-emacs-state-modes 'notmuch-mode)
+      (require 'ace-link-notmuch)
+      (define-key notmuch-hello-mode-map (kbd "f") 'notmuch-jump-search)
+      (define-key notmuch-hello-mode-map (kbd "j") 'widget-forward)
+      (define-key notmuch-hello-mode-map (kbd "k") 'widget-backward)
+
+      (evilified-state-evilify-map notmuch-search-mode-map
+        :mode notmuch-search-mode
+        :bindings
+        (kbd "f") 'notmuch-jump-search
+        (kbd "j") 'notmuch-search-next-thread
+        (kbd "k") 'notmuch-search-previous-thread)
+
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "j") 'notmuch-search-next-thread)
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "k") 'notmuch-search-previous-thread)
+      ;; (define-key notmuch-search-mode-map
+      ;;   (kbd "f") 'notmuch-jump-search)
+
+      (add-hook 'notmuch-hello-refresh-hook
+                (lambda ()
+                  (if (and (eq (point) (point-min))
+                           (search-forward "Saved searches:" nil t))
+                      (progn
+                        (forward-line)
+                        (widget-forward 1))
+                    (if (eq (widget-type (widget-at)) 'editable-field)
+                        (beginning-of-line))))))))
+
+(defun utility/init-ace-link-notmuch ()
+  (use-package ace-link-notmuch
+    :defer t))
+
+(defun utility/init-helm-notmuch ()
+  (use-package helm-notmuch
+    :defer t))
+
+(defun utility/init-helm-fuzzy-find ()
+  (use-package helm-fuzzy-find
+    :defer t))
+
+(defun utility/init-wanderlust ()
+  "Initialize WanderLust."
+  (use-package wl
+    :defer t
+    :init
+    (progn
+      (spacemacs/set-leader-keys
+        "anw" 'wl
+        "anm" 'compose-mail)
+      (setq read-mail-command 'wl
+            mail-user-agent 'wl-user-agent
+            org-mime-library 'semi)
+      (define-mail-user-agent
+        'wl-user-agent
+        'wl-user-agent-compose
+        'wl-draft-send
+        'wl-draft-kill
+        'mail-send-hook)
+      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mime" "mime-edit")
+      (with-eval-after-load 'mime-edit
+        (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
+          dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
+          "k" 'wl-draft-kill
+          "s" 'wl-draft-save
+          "z" 'wl-draft-save-and-exit
+          "m" mime-edit-mode-entity-map)))
+    :config
+    (progn
+      (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason
+      (dolist (mode '(wl-message-mode
+                      wl-summary-mode
+                      wl-folder-mode
+                      wl-draft-mode
+                      mime-view-mode))
+        (add-to-list 'evil-emacs-state-modes mode)))))
+
 
 (defun utility/init-aria2 ()
   "Initialize aria2"
@@ -110,36 +220,6 @@
   (use-package namazu
     :defer t
     :commands namazu))
-
-(defun utility/init-wc-mode ()
-  "Initialize `wc-mode'."
-  (use-package wc-mode
-    :defer t
-    :config
-    (setq wc-modeline-format "[%tw:%w/%gw]")))
-
-(defun utility/init-artbollocks-mode ()
-  "Initialize `artbollocks-mode'."
-  (use-package artbollocks-mode
-    :defer t
-    :init
-    (spacemacs|add-toggle artbollocks-grammar
-      :mode artbollocks-mode
-      :documentation "An Emacs minor mode for avoiding cliches and bad grammar when writing about art (or other topics)"
-      :evil-leader "xwg"
-      :on (font-lock-fontify-buffer))))
-
-(defun utility/init-writeroom-mode ()
-  "Initialize `writeroom-mode'."
-  (use-package writeroom-mode
-    :defer t
-    :init
-    (setq writeroom-fullscreen-effect 'fullscreen)))
-
-(defun utility/init-dklrt ()
-  "Initialize dklrt."
-  (use-package dklrt
-    :defer t))
 
 (defun utility/init-evalator ()
   "Initialize a REPL."
