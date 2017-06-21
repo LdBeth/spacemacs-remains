@@ -16,11 +16,12 @@
     (ace-link-notmuch :location local)
     helm-notmuch
     helm-fuzzy-find
-    wanderlust(aria2
-               :location
-               (recipe
-                :fetcher github
-                :repo "LdBeth/aria2.el"))
+    wanderlust
+    (aria2
+     :location
+     (recipe
+      :fetcher github
+      :repo "LdBeth/aria2.el"))
     (eww :location built-in)
     w3m
     shimbun

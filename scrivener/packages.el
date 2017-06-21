@@ -35,7 +35,11 @@
     writeroom-mode
     dklrt
     muse
-    (planner :location local))
+    (planner
+     :location
+     (recipe
+      :fetcher github
+      :repo "LdBeth/planner")))
   "The Scrivener Layer, with some powerful writing tools.")
 
 (defun scrivener/init-wc-mode ()
@@ -66,7 +70,9 @@
 (defun scrivener/init-dklrt ()
   "Initialize dklrt."
   (use-package dklrt
-    :defer t))
+    :defer t
+    :init
+    (add-hook 'ledger-mode-hook 'dklrt-AppendRecurringMaybe)))
 
 (defun scrivener/init-muse ()
   "Initialize Muse."
