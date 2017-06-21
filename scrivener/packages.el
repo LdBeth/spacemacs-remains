@@ -33,8 +33,9 @@
   '(wc-mode
     artbollocks-mode
     writeroom-mode
+    dklrt
     muse
-    dklrt)
+    (planner :location local))
   "The Scrivener Layer, with some powerful writing tools.")
 
 (defun scrivener/init-wc-mode ()
@@ -70,6 +71,11 @@
 (defun scrivener/init-muse ()
   "Initialize Muse."
   (use-package muse
+    :defer t))
+
+(defun scrivener/init-planner ()
+  "Initialize Planner."
+  (use-package planner
     :defer t))
 
 ;;; packages.el ends here
