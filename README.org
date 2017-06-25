@@ -112,12 +112,8 @@
 *** [[http://feed.williamlong.info/][月光博客]]
     感觉倒像是新闻站。
 
-** Views & Attitudes                                                  :View:
-*** [[http://www.nbweekly.com/rss/smw/][南都周刊]]
-
 ** Recommendations                                                    :Push:
 *** [[http://animetaste.net/feed][Anime Taste]]                                                         :ACG:
-*** [[http://www.zreading.cn/feed][左岸读书]]
    
 ** Music                                                               :ACG:
 *** [[http://koe.anime-sharing.com/feed/][Anime Sharing]]

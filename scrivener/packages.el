@@ -35,6 +35,8 @@
     writeroom-mode
     dklrt
     muse
+    yaoddmuse
+    ;; hyperbole
     (planner
      :location
      (recipe
@@ -75,13 +77,40 @@
     (add-hook 'ledger-mode-hook 'dklrt-AppendRecurringMaybe)))
 
 (defun scrivener/init-muse ()
-  "Initialize Muse."
+  "Initialize Emacs Muse."
   (use-package muse
-    :defer t))
+    :defer t
+    :config
+    (require 'muse-wiki)))
+
+(defun scrivener/init-yaoddmuse ()
+  "Initialize OddMuse Wiki."
+  (use-package yaoddmuse
+    :defer t
+    :config
+    (setq yaoddmuse-browse-function 'w3m-browse-url)))
+
+;; (defun scrivener/init-hyperbole ()
+;;   "Initialize GNU Hyperbole."
+;;   (use-package hyperbole
+;;     :defer t))
 
 (defun scrivener/init-planner ()
   "Initialize Planner."
   (use-package planner
-    :defer t))
+    :defer t
+    :init
+    (progn
+      (spacemacs/declare-prefix "am" "Muse" "Muse and Planner")
+      (spacemacs/set-leader-keys
+        "amp" 'plan
+        "amc" 'planner-create-task-from-buffer
+        "amt" 'planner-goto-today)
+      (add-hook 'diary-display-hook 'fancy-diary-display)
+      (setq remember-handler-functions '(remember-planner-append))
+      (defvaralias 'remember-annotation-functions 'planner-annotation-functions))
+    :config
+    (require 'planner-diary)))
+
 
 ;;; packages.el ends here

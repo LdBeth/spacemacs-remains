@@ -16,7 +16,6 @@
                 :repo "Liu233w/multi-keys.el"
                 :branch "feature-keymap"))
     gnus
-    elfeed
     erc
     chinese-pyim-basedict
     chinese-pyim
@@ -110,19 +109,6 @@
                        gnus-article-mode
                        gnus-summary-mode))
         (add-to-list 'evil-emacs-state-modes modes)))))
-
-(defun deprave/pre-init-elfeed ()
-  (spacemacs|use-package-add-hook elfeed
-    :post-init
-    (setq elfeed-db-directory
-          (if (file-exists-p dotspacemacs-directory)
-              (concat dotspacemacs-directory "elfeed")
-            (concat spacemacs-cache-directory "elfeed")))
-    :post-config
-    (evil-define-key 'evilified elfeed-show-mode-map "J"
-      'elfeed-goodies/split-show-next)
-    (evil-define-key 'evilified elfeed-show-mode-map "K"
-      'elfeed-goodies/split-show-prev)))
 
 (defun deprave/pre-init-erc ()
   (spacemacs|use-package-add-hook erc

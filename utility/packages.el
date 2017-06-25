@@ -10,8 +10,7 @@
 ;;; License: GPLv3
 ;;; Code:
 (defconst utility-packages
-  '(hexo
-    notmuch
+  '(notmuch
     ;; (notmuch :location site)
     (ace-link-notmuch :location local)
     helm-notmuch
@@ -29,16 +28,16 @@
     evalator)
   "The Utility Layer, including some useful network tools.")
 
-(defun utility/init-hexo ()
-  (use-package hexo
-    :defer t
-    :init
-    (defun hexo-my-blog ()
-      (interactive)
-      (hexo "~/blog/"))
-    (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
-    :config
-    (evilified-state-evilify hexo-mode hexo-mode-map)))
+;; (defun utility/init-hexo ()
+;;   (use-package hexo
+;;     :defer t
+;;     :init
+;;     (defun hexo-my-blog ()
+;;       (interactive)
+;;       (hexo "~/blog/"))
+;;     (spacemacs/set-leader-keys "ab" 'hexo-my-blog)
+;;     :config
+;;     (evilified-state-evilify hexo-mode hexo-mode-map)))
 
 ;; (defun utility/init-gitter ()
 ;;   "Initialize gitter"
@@ -137,7 +136,6 @@
                       wl-draft-mode
                       mime-view-mode))
         (add-to-list 'evil-emacs-state-modes mode)))))
-
 
 (defun utility/init-aria2 ()
   "Initialize aria2"
