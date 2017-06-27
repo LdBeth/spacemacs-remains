@@ -146,7 +146,9 @@
   (use-package bbdb
     :defer t
     :init
-    (setq bbdb-file (expand-file-name "bbdb" dotspacemacs-directory))))
+    (setq bbdb-file (expand-file-name "bbdb" dotspacemacs-directory)
+          bbdb-auto-notes-rules '(("X-Face" (".+" x-face 0 'replace))
+                                  ("Face" (".+" face 0 'replace))))))
 
 (defun utility/init-bbdb- ()
   "Initialize BBDB-."
