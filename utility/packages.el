@@ -16,6 +16,9 @@
     helm-notmuch
     helm-fuzzy-find
     wanderlust
+    bbdb
+    bbdb-
+    helm-bbdb
     (aria2
      :location
      (recipe
@@ -126,7 +129,8 @@
           "k" 'wl-draft-kill
           "s" 'wl-draft-save
           "z" 'wl-draft-save-and-exit
-          "m" mime-edit-mode-entity-map)))
+          "m" mime-edit-mode-entity-map
+          "c" 'bbdb-:start-completion)))
     :config
     (progn
       (add-hook 'wl-folder-mode-hook 'evil-emacs-state);; Unknown Reason
@@ -137,8 +141,29 @@
                       mime-view-mode))
         (add-to-list 'evil-emacs-state-modes mode)))))
 
+(defun utility/init-bbdb ()
+  "Initialize bbdb."
+  (use-package bbdb
+    :defer t
+    :init
+    (setq bbdb-file (expand-file-name "bbdb" dotspacemacs-directory))))
+
+(defun utility/init-bbdb- ()
+  "Initialize BBDB-."
+  (use-package bbdb-
+    :defer t))
+
+(defun utility/init-helm-bbdb ()
+  "Initialize bbdb."
+  (use-package helm-bbdb
+    :defer t
+    :config
+    (spacemacs/set-leader-keys
+      "and" 'helm-bbdb
+      "an-" 'bbdb-:open)))
+
 (defun utility/init-aria2 ()
-  "Initialize aria2"
+  "Initialize aria2."
   (use-package aria2
     :defer t
     :init
@@ -205,7 +230,13 @@
     (progn
       (spacemacs/set-leader-keys "an3" 'w3m))
     :config
-    (setq w3m-default-display-inline-images t
+    (setq w3m-coding-system 'utf-8
+          w3m-file-coding-system 'utf-8
+          w3m-file-name-coding-system 'utf-8
+          w3m-input-coding-system 'utf-8
+          w3m-output-coding-system 'utf-8
+          w3m-terminal-coding-system 'utf-8
+          w3m-default-display-inline-images t
           w3m-use-cookies t
           w3m-namazu-default-index nil)))
 
