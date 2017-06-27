@@ -4,7 +4,7 @@
 
 [[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]]
 
-[[file:evil.png]]
+[[file:evil.xpm]]
 
 
 * Introduction
@@ -102,7 +102,9 @@
   Provide fancy icons.
 
 * RSS Feeds                                                          :elfeed:
-  I use elfeed-org to manage my RSS Feeds.
+  +I use elfeed-org to manage my RSS Feeds.+
+
+  Now I use w3m Shimbun modulus to read RSS and Atom Feeds.
 
 ** News                                                               :News:
 *** [[http://www.solidot.org/index.rss][Solidot]]

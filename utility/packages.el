@@ -159,7 +159,7 @@
   "Initialize bbdb."
   (use-package helm-bbdb
     :defer t
-    :config
+    :init
     (spacemacs/set-leader-keys
       "and" 'helm-bbdb
       "an-" 'bbdb-:open)))
