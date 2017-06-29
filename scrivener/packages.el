@@ -37,6 +37,7 @@
     muse
     yaoddmuse
     ;; hyperbole
+    deft
     (planner
      :location
      (recipe
@@ -94,6 +95,13 @@
 ;;   "Initialize GNU Hyperbole."
 ;;   (use-package hyperbole
 ;;     :defer t))
+
+(defun scrivener/init-deft ()
+  "Initialize Deft."
+  (use-package deft
+    :defer t
+    :config
+    (add-to-list 'deft-extensions "muse")))
 
 (defun scrivener/init-planner ()
   "Initialize Planner."

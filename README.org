@@ -1,11 +1,7 @@
 #+TITLE: LdBeth's Spacemacs Private Directory
 #+STARTUP: SHOWALL
-#+TAGS: News(n) View(v) Push(p) Pics(p) Emacs(e) ACG(a)
 
 [[http://spacemacs.org][file:https://cdn.rawgit.com/syl20bnr/spacemacs/442d025779da2f62fc86c2082703697714db6514/assets/spacemacs-badge.svg]]
-
-[[file:evil.xpm]]
-
 
 * Introduction
   This is the Spacemacs private directory of LdBeth, to use it, clone it
@@ -101,29 +97,29 @@
 * all-the-icons Layer
   Provide fancy icons.
 
-* RSS Feeds                                                          :elfeed:
+* RSS Feeds
   +I use elfeed-org to manage my RSS Feeds.+
 
   Now I use w3m Shimbun modulus to read RSS and Atom Feeds.
 
-** News                                                               :News:
+** News
 *** [[http://www.solidot.org/index.rss][Solidot]]
-*** [[http://www.acgpiping.net/feed/][ACG 批评]]                                                            :ACG:
+*** [[http://www.acgpiping.net/feed/][ACG 批评]]
 
 ** Blogs
 *** [[http://feed.williamlong.info/][月光博客]]
     感觉倒像是新闻站。
 
-** Recommendations                                                    :Push:
-*** [[http://animetaste.net/feed][Anime Taste]]                                                         :ACG:
+** Recommendations
+*** [[http://animetaste.net/feed][Anime Taste]]
    
-** Music                                                               :ACG:
+** Music
 *** [[http://koe.anime-sharing.com/feed/][Anime Sharing]]
 
-** Comics                                                             :Pics:
+** Comics
 *** [[https://xkcd.com/rss.xml][xkcd]]
     Something Interesting.
 
-** Emacs                                                             :Emacs:
+** Emacs
 *** [[http://www.emacsist.com/rss][Emacsist]]
 *** [[http://planet.emacsen.org/atom.xml][Planet Emacsen]]

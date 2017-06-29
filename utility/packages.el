@@ -28,7 +28,8 @@
     w3m
     shimbun
     (namazu :location local)
-    evalator)
+    evalator
+    (predictive :location local))
   "The Utility Layer, including some useful network tools.")
 
 ;; (defun utility/init-hexo ()
@@ -153,7 +154,9 @@
 (defun utility/init-bbdb- ()
   "Initialize BBDB-."
   (use-package bbdb-
-    :defer t))
+    :defer t
+    :config
+    (add-to-list 'bbdb-:mail-modes 'wl-draft-mode)))
 
 (defun utility/init-helm-bbdb ()
   "Initialize bbdb."
@@ -258,5 +261,10 @@
   (use-package evalator
     :defer t
     :init (spacemacs/register-repl 'evalator 'evalator "evalator")))
+
+(defun utility/init-predictive ()
+  "Initialize Predictive Mode."
+  (use-package predictive
+    :commands predictive-mode))
 
 ;;; packages.el ends here

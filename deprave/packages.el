@@ -19,7 +19,6 @@
     erc
     chinese-pyim-basedict
     chinese-pyim
-    company
     smex
     slime
     helm-smex
@@ -169,23 +168,6 @@
             (call-interactively #'helm-smex-major-mode-commands)
           (call-interactively #'helm-smex)))
       (global-set-key (kbd "M-x") #'helm-smex-or-major-mode-commands))))
-
-(defun deprave/post-init-company ()
-  (spacemacs|add-company-backends
-    :backends company-ispell
-    :modes text-mode)
-  (defun spell/toggle-company-ispell ()
-    "Toggles company-ispell"
-    (interactive)
-    (cond
-     ((memq 'company-ispell company-backends)
-      (setq company-backends
-            (delq 'company-ispell company-backends))
-      (message "company-ispell disabled."))
-     (t
-      (add-to-list 'company-backends 'company-ispell)
-      (message "company-ispell enabled."))))
-  (spacemacs/set-leader-keys "Si" 'spell/toggle-company-ispell))
 
 (defun deprave/pre-init-eshell ()
   (spacemacs|use-package-add-hook eshell
