@@ -42,7 +42,6 @@
           )
     emms-state
     helm-emms
-    podcaster
     )
   "The Emacs Media Layer.")
 
@@ -55,13 +54,12 @@
     :init
     (progn
       (global-set-key [(f8)] 'emms-smart-browse)
-      (spacemacs/declare-prefix "am" "music")
+      (spacemacs/declare-prefix "ae" "EMMS")
       (spacemacs/set-leader-keys
-        "ams" 'emms-streams
-        "amb" 'emms-browser
-        "amc" 'podcaster
-        "amp" 'emms-playlist-mode-go
-        "amo" 'emms-show
+        "aes" 'emms-streams
+        "aeb" 'emms-browser
+        "aep" 'emms-playlist-mode-go
+        "aeo" 'emms-show
         "a SPC" 'emms-play-pause-dwim
         "a ." 'emms-next
         "a ," 'emms-previous
@@ -77,10 +75,10 @@
       (emms-all)
       (emms-mode-line 0)
       (emms-playing-time 0)
-      (emms-default-players)
-      (setq emms-player-list '(emms-player-mplayer))
-      (setq emms-source-file-default-directory "/Applications/osu!.app/Contents/Resources/drive_c/osu!/Songs/")
-      (setq emms-playlist-buffer-name "*iTunes*")
+      (define-emms-simple-player afplay '(file)
+        (regexp-opt '(".mp3" "m4a" "aac"))
+        "afplay")
+      (setq emms-player-list '(emms-player-afplay emms-player-mplayer))
       (autoload 'emms-smart-browse "emms-browser.el" "Browse with EMMS" t)
       (define-key emms-browser-mode-map (kbd "D") 'emms-browser-move-files-to-trash)
       (define-key emms-browser-mode-map (kbd "t") 'emms-browser-toggle-subitems)
@@ -126,25 +124,16 @@
         ;; since this is normally SPC
         "t" 'emms-browser-toggle-subitems
         ;; makes more sense than C-j
-        (kbd "<S-return>") 'emms-browser-add-tracks-and-play
-        )
-      )
-    )
-  )
+        (kbd "<S-return>") 'emms-browser-add-tracks-and-play))))
 
 (defun emms/init-emms-state ()
   (use-package emms-state
     ;; for some reason if this is deferred you can't bring up the smart browser.
     :config
-    (emms-state-mode 0)
-    ))
+    (emms-state-mode 0)))
 
 (defun emms/init-helm-emms ()
   (use-package helm-emms
-    :defer t))
-
-(defun emms/init-podcaster ()
-  (use-package podcaster
     :defer t))
 
 ;;; packages.el ends here

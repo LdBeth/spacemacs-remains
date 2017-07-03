@@ -36,6 +36,7 @@
     dklrt
     muse
     yaoddmuse
+    fountain-mode
     ;; hyperbole
     deft
     (planner
@@ -90,6 +91,11 @@
     :defer t
     :config
     (setq yaoddmuse-browse-function 'w3m-browse-url)))
+
+(defun scrivener/init-fountain-mode ()
+  "Initialize Fountain Mode."
+  (use-package fountain-mode
+    :defer t))
 
 ;; (defun scrivener/init-hyperbole ()
 ;;   "Initialize GNU Hyperbole."

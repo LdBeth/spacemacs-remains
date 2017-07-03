@@ -24,6 +24,8 @@
      (recipe
       :fetcher github
       :repo "LdBeth/aria2.el"))
+    transmission
+    wget
     (eww :location built-in)
     w3m
     shimbun
@@ -123,7 +125,7 @@
         'wl-draft-send
         'wl-draft-kill
         'mail-send-hook)
-      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mime" "mime-edit")
+      (spacemacs/declare-prefix-for-mode 'wl-draft-mode "mm" "mime" "mime-edit")
       (with-eval-after-load 'mime-edit
         (spacemacs/set-leader-keys-for-major-mode 'wl-draft-mode
           dotspacemacs-major-mode-leader-key 'wl-draft-send-and-exit
@@ -174,7 +176,9 @@
     :init
     (progn
       (spacemacs/declare-prefix "an" "network")
-      (spacemacs/set-leader-keys "ana" 'aria2-downloads-list))
+      (spacemacs/set-leader-keys
+        "ana" 'aria2-downloads-list
+        "ant" 'transmission))
     :config
     (progn
       (defun aria2//is-aria-process-p (f &rest ARG)
@@ -188,15 +192,24 @@
       (setq aria2-add-evil-quirks t)
       (setq aria2-download-directory (expand-file-name "~/Downloads/")))))
 
+(defun utility/init-transmission ()
+  (use-package transmission
+    :defer t
+    :config
+    (add-to-list 'evil-emacs-state-modes 'transmission-mode)))
+
+(defun utility/init-wget ()
+  (use-package wget
+    :defer t))
+
 (defun utility/init-eww ()
   "initialize eww"
   (use-package eww
     :defer t
     :init
-    (progn
-      (spacemacs/set-leader-keys "ane" 'eww)
-      (spacemacs/set-leader-keys "anb" 'eww-list-bookmarks)
-      )
+    (spacemacs/set-leader-keys
+      "ane" 'eww
+      "anb" 'eww-list-bookmarks)
     :config
     (progn
       (setq eww-bookmarks-directory

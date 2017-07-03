@@ -146,15 +146,88 @@ These key bindings also get added to the completion overlay keymap.")
 If no overlay is supplied, tries to find one at point.
 The point had better be within OVERLAY or you'll have bad luck
 in all your flower-arranging endevours for thirteen years."
-    (interactive)
-    ;; if no overlay was supplied, try to find one at point
-    (unless overlay (setq overlay (completion-ui-overlay-at-point)))
-    ;; activate popup-tip key bindings
-    (completion-activate-overlay-keys overlay completion-popup-tip-map)
-    ;; if popup-tip has been displayed manually, re-display it
-    (when (overlay-get overlay 'completion-interactive-popup-tip)
-      (completion-show-popup-tip overlay)))
+  (interactive)
+  ;; if no overlay was supplied, try to find one at point
+  (unless overlay (setq overlay (completion-ui-overlay-at-point)))
+  ;; activate popup-tip key bindings
+  (completion-activate-overlay-keys overlay completion-popup-tip-map)
+  ;; if popup-tip has been displayed manually, re-display it
+  (when (overlay-get overlay 'completion-interactive-popup-tip)
+    (completion-show-popup-tip overlay)))
 
+
+(cl-defun completion-popup-tip (string
+                                &key
+                                point
+                                (around t)
+                                width
+                                (height 15)
+                                min-height
+                                truncate
+                                (face 'popup-tip-face)
+                                mouse-face
+                                (selection-face face)
+                                margin
+                                margin-left
+                                margin-right
+                                scroll-bar
+                                parent
+                                parent-offset
+                                nowait
+                                prompt
+                                &aux tip lines)
+  "Show a tooltip of STRING at POINT. This function is
+synchronized unless NOWAIT specified. Almost arguments are same
+as `popup-create' except for TRUNCATE, NOWAIT, and PROMPT.
+
+If TRUNCATE is non-nil, the tooltip can be truncated.
+
+If NOWAIT is non-nil, this function immediately returns the
+tooltip instance without entering event loop.
+
+PROMPT is a prompt string when reading events during event loop."
+  (if (bufferp string)
+      (setq string (with-current-buffer string (buffer-string))))
+  ;; TODO strip text (mainly face) properties
+  (setq string (substring-no-properties string))
+
+  (and (eq margin t) (setq margin 1))
+  (or margin-left (setq margin-left margin))
+  (or margin-right (setq margin-right margin))
+
+  (let ((it (popup-fill-string string width popup-tip-max-width)))
+    (setq width (car it)
+          lines (cdr it)))
+
+  (setq tip (popup-create point width height
+                          :min-height min-height
+                          :around around
+                          :margin-left margin-left
+                          :margin-right margin-right
+                          :scroll-bar scroll-bar
+                          :face face
+                          :mouse-face mouse-face
+                          :selection-face selection-face
+                          :parent parent
+                          :parent-offset parent-offset))
+
+  (unwind-protect
+      (when (> (popup-width tip) 0)                   ; not to be corrupted
+        (when (and (not (eq width (popup-width tip))) ; truncated
+                   (not truncate))
+          ;; Refill once again to lines be fitted to popup width
+          (setq width (popup-width tip))
+          (setq lines (cdr (popup-fill-string string width width))))
+
+        (popup-set-list tip lines)
+        (popup-draw tip)
+        (if nowait
+            tip
+          (clear-this-command-keys)
+          (push (read-event prompt) unread-command-events)
+          t))
+    (unless nowait
+      (popup-delete tip))))
 
 
 (defun completion-show-popup-tip (&optional overlay interactive)
@@ -179,36 +252,36 @@ INTERACTIVE is supplied, pretend we were called interactively."
       ;; auto-show-helpers, since they won't have been called by
       ;; `completion-ui-auto-show'
       (when (or (called-interactively-p 'any) interactive)
-	(overlay-put overlay 'completion-interactive-popup-tip t)
-	(completion-ui-call-auto-show-interface-helpers overlay))
+        (overlay-put overlay 'completion-interactive-popup-tip t)
+        (completion-ui-call-auto-show-interface-helpers overlay))
 
       ;; construct the popup-tip text
       (let ((text (funcall
-		   (completion-ui-source-popup-tip-function nil overlay)
-		   overlay)))
-	(when (string= (substring text -1) "\n")
-	  (setq text (substring text 0 -1)))
+                   (completion-ui-source-popup-tip-function nil overlay)
+                   overlay)))
+        (when (string= (substring text -1) "\n")
+          (setq text (substring text 0 -1)))
 
-	;; show popup-tip
-	(let ((popup (popup-tip
-		      text
-		      :point (+ (overlay-start overlay)
-				(if completion-ui-popup-tip-under-point
-				    completion-ui-popup-tip-margin
-				  (- (length (overlay-get overlay 'prefix)))))
-		      :nowait t
-		      ;; :face 'completion-popup-tip-face
-		      ;; :selection-face 'completion-highlight-face
-		      :margin-left completion-ui-popup-tip-margin
-		      :margin-right completion-ui-popup-tip-margin))
-	      (i (overlay-get overlay 'completion-num)))
-	  (overlay-put overlay 'completion-popup-tip popup)
-	  (when i (popup-select popup i)))
+        ;; show popup-tip
+        (let ((popup (completion-popup-tip
+                      text
+                      :point (+ (overlay-start overlay)
+                                (if completion-ui-popup-tip-under-point
+                                    completion-ui-popup-tip-margin
+                                  (- (length (overlay-get overlay 'prefix)))))
+                      :nowait t
+                      :face 'completion-popup-tip-face
+                      :selection-face 'completion-highlight-face
+                      :margin-left completion-ui-popup-tip-margin
+                      :margin-right completion-ui-popup-tip-margin))
+              (i (overlay-get overlay 'completion-num)))
+          (overlay-put overlay 'completion-popup-tip popup)
+          (when i (popup-select popup i)))
 
-	;; activate popup-tip keys
-	(completion-activate-overlay-keys
-	 overlay completion-popup-tip-active-map)
-	))))
+        ;; activate popup-tip keys
+        (completion-activate-overlay-keys
+         overlay completion-popup-tip-active-map)
+        ))))
 
 
 (defun completion-cancel-popup-tip (&optional overlay)

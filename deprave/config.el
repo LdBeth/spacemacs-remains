@@ -13,3 +13,7 @@
 (add-hook 'js-mode-hook (lambda ()
                           (when (string= ".conkerorrc" (buffer-name))
                             (conkeror-minor-mode 1))))
+;;; Parinfer
+(spacemacs|use-package-add-hook parinfer
+  :post-init
+  (add-to-list 'parinfer-extensions 'smart-tab))
