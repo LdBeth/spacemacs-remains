@@ -37,13 +37,13 @@
     muse
     yaoddmuse
     fountain-mode
-    ;; hyperbole
-    deft
+    hyperbole
     (planner
      :location
      (recipe
       :fetcher github
-      :repo "LdBeth/planner")))
+      :repo "LdBeth/planner"))
+    (predictive :location local))
   "The Scrivener Layer, with some powerful writing tools.")
 
 (defun scrivener/init-wc-mode ()
@@ -97,17 +97,11 @@
   (use-package fountain-mode
     :defer t))
 
-;; (defun scrivener/init-hyperbole ()
-;;   "Initialize GNU Hyperbole."
-;;   (use-package hyperbole
-;;     :defer t))
-
-(defun scrivener/init-deft ()
-  "Initialize Deft."
-  (use-package deft
-    :defer t
-    :config
-    (add-to-list 'deft-extensions "muse")))
+(defun scrivener/init-hyperbole ()
+  "Initialize GNU Hyperbole."
+  (use-package hyperbole
+    :demand t
+    :init))
 
 (defun scrivener/init-planner ()
   "Initialize Planner."
@@ -126,5 +120,9 @@
     :config
     (require 'planner-diary)))
 
+(defun scrivener/init-predictive ()
+  "Initialize Predictive Mode."
+  (use-package predictive
+    :commands predictive-mode))
 
 ;;; packages.el ends here

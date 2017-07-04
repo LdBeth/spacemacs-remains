@@ -53,7 +53,6 @@
     :defer t
     :init
     (progn
-      (global-set-key [(f8)] 'emms-smart-browse)
       (spacemacs/declare-prefix "ae" "EMMS")
       (spacemacs/set-leader-keys
         "aes" 'emms-streams
@@ -68,7 +67,7 @@
       (setq emms-directory (concat dotspacemacs-directory "emms"))
       (add-hook 'emms-browser-show-display-hook 'evil-initialize)
       (add-hook 'emms-stream-hook 'evil-initialize)
-      )
+      (autoload 'emms-smart-browse "emms-browser.el" "Browse with EMMS" t))
     :config
     (progn
       ;; (require 'emms-setup)
@@ -79,7 +78,6 @@
         (regexp-opt '(".mp3" "m4a" "aac"))
         "afplay")
       (setq emms-player-list '(emms-player-afplay emms-player-mplayer))
-      (autoload 'emms-smart-browse "emms-browser.el" "Browse with EMMS" t)
       (define-key emms-browser-mode-map (kbd "D") 'emms-browser-move-files-to-trash)
       (define-key emms-browser-mode-map (kbd "t") 'emms-browser-toggle-subitems)
       (require 'emms-info-libtag)
@@ -129,6 +127,7 @@
 (defun emms/init-emms-state ()
   (use-package emms-state
     ;; for some reason if this is deferred you can't bring up the smart browser.
+    :after emms
     :config
     (emms-state-mode 0)))
 

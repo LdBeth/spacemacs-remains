@@ -30,8 +30,7 @@
     w3m
     shimbun
     (namazu :location local)
-    evalator
-    (predictive :location local))
+    evalator)
   "The Utility Layer, including some useful network tools.")
 
 ;; (defun utility/init-hexo ()
@@ -274,10 +273,5 @@
   (use-package evalator
     :defer t
     :init (spacemacs/register-repl 'evalator 'evalator "evalator")))
-
-(defun utility/init-predictive ()
-  "Initialize Predictive Mode."
-  (use-package predictive
-    :commands predictive-mode))
 
 ;;; packages.el ends here
